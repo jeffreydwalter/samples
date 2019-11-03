@@ -16,17 +16,23 @@ Simulator App from the <a target="_blank"
 href="https://play.google.com/store/apps/details?id=io.github.webbluetoothcg.bletestperipheral">Google
 Play Store</a> and check out the <a href="battery-level-async-await.html">Battery Level (Async Await)</a> sample.</p>
 
-<button name=connect">Get Bluetooth Device's Battery Level</button>
+<button>Get Bluetooth Device's Battery Level</button>
+<button>Update</button>
 
 {% include output_helper.html %}
 
 {% include js_snippet.html filename='battery-level.js' %}
 
 <script>
-  document.querySelector('connect').addEventListener('click', function() {
+  document.querySelector('button').addEventListener('click', function() {
     if (isWebBluetoothEnabled()) {
       ChromeSamples.clearLog();
       onButtonClick();
+    }
+  });
+  document.querySelector("button:nth-of-type(2)").addEventListener('click', function() {
+    if (isWebBluetoothEnabled()) {
+      onButtonClick2();
     }
   });
 </script>

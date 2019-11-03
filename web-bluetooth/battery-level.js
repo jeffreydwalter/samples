@@ -1,3 +1,5 @@
+let battSrvc = null;
+
 function onButtonClick() {
   log('Requesting Bluetooth Device...');
   navigator.bluetooth.requestDevice(
@@ -12,12 +14,24 @@ function onButtonClick() {
   })
   .then(service => {
     log('Getting Battery Level Characteristic...');
-    return service.getCharacteristic('battery_level');
+    return  service.getCharacteristic('battery_level');
   })
   .then(characteristic => {
     log('Reading Battery Level...');
+    battSrvc = characteristic;
     return characteristic.readValue();
   })
+  .then(value => {
+    let batteryLevel = value.getUint8(0);
+    log('> Battery Level is ' + batteryLevel + '%');
+  })
+  .catch(error => {
+    log('Argh! ' + error);
+  });
+}
+
+function onButtonClick2() {
+  battSrvc.readValue()
   .then(value => {
     let batteryLevel = value.getUint8(0);
     log('> Battery Level is ' + batteryLevel + '%');
