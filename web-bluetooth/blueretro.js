@@ -3,8 +3,8 @@ let configChar = null;
 function onButtonClick() {
   log('Requesting Bluetooth Device...');
   navigator.bluetooth.requestDevice(
-    {filters: [{name: 'BlueRetro'}]},
-    {optionalServices: ['00830f56-5180-fab0-314b-2fa176799a56']})
+    {filters: [{name: 'BlueRetro'}],
+    optionalServices: ['00830f56-5180-fab0-314b-2fa176799a56']})
   .then(device => {
     log('Connecting to GATT Server...');
     return device.gatt.connect();
