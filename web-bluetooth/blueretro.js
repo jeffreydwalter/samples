@@ -2,8 +2,8 @@ let configChar = null;
 
 function onButtonClick() {
   log('Requesting Bluetooth Device...');
-  navigator.bluetooth.requestDevice(
-    {filters: [{services: ['569a7976-a12f-4b31-b0fa-8051560f8300']}]})
+  navigator.bluetooth.requestDevice()
+    //{filters: [{services: ['569a7976-a12f-4b31-b0fa-8051560f8300']}]})
   .then(device => {
     log('Connecting to GATT Server...');
     return device.gatt.connect();
