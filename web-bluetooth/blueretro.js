@@ -15,7 +15,7 @@ function onButtonClick() {
   })
   .then(service => {
     log('Getting Config Characteristic...');
-    return  service.getCharacteristic('569a7976-a12f-4b31-b0fa-8051560f8301');
+    return  service.getCharacteristic('01830f56-5180-fab0-314b-2fa176799a56');
   })
   .then(characteristic => {
     log('Reading Config...');
