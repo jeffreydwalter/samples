@@ -1,0 +1,33 @@
+---
+feature_name: Web Bluetooth / BlueRetro
+chrome_version: 45
+check_min_version: true
+feature_id: 5264933985976320
+icon_url: icon.png
+index: index.html
+---
+
+{% include_relative _includes/intro.html %}
+
+<button>Connect BlueRetro</button>
+<button>Get config</button>
+
+{% include output_helper.html %}
+
+{% include js_snippet.html filename='blueretro.js' %}
+
+<script>
+  document.querySelector('button').addEventListener('click', function() {
+    if (isWebBluetoothEnabled()) {
+      ChromeSamples.clearLog();
+      onButtonClick();
+    }
+  });
+  document.querySelector("button:nth-of-type(2)").addEventListener('click', function() {
+    if (isWebBluetoothEnabled()) {
+      onButtonClick2();
+    }
+  });
+</script>
+
+{% include_relative _includes/utils.html %}
