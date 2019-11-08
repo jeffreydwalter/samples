@@ -66,7 +66,14 @@ function addInput() {
         nbInput++;
         var div = document.getElementById("divInput");
         var newSubDiv = document.createElement("div");
-        newSubDiv.innerHTML = '<input type="text" name="tags"/><button class="delInput"">Remove</button>'
+        var newInput = document.createElement("input");
+        newInput.setAttribute("type", "text");
+        newInput.setAttribute("class", "input");
+        var newButton = document.createElement("button");
+        newButton.innerHTML = 'Delete';
+        newButton.addEventListener("click", delInput);
+        newSubDiv.appendChild(newInput);
+        newSubDiv.appendChild(newButton);
         div.appendChild(newSubDiv);
     }
 }
@@ -78,7 +85,7 @@ function delInput() {
 }
 
 function listInput() {
-    var x = document.getElementsByName("tags");
+    var x = document.getElementsByClassName("input");
     for (var i = 0; i < x.length; i++) {
         log(x[i].value);
     }
