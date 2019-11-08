@@ -41,9 +41,11 @@ index: index.html
   document.getElementById("listInput").addEventListener('click', function() {
     listInput();
   });
-  document.getElementsByClassName("delInput").addEventListener('click', function() {
-    delInput();
-  });
+
+  var delInputs = document.getElementsByClassName("delInput");
+  for (var i = 0; i < delInputs.length; i++) {
+    delInputs[i].addEventListener('click', delInput);
+  }
 </script>
 
 {% include_relative _includes/utils.html %}
