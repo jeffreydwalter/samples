@@ -71,7 +71,7 @@ function addInput() {
         newInput.setAttribute("class", "input");
         var newButton = document.createElement("button");
         newButton.innerHTML = 'Delete';
-        newButton.addEventListener("click", delInput());
+        newButton.addEventListener("click", delInput);
         newSubDiv.appendChild(newInput);
         newSubDiv.appendChild(newButton);
         div.appendChild(newSubDiv);
@@ -80,8 +80,8 @@ function addInput() {
 
 function delInput() {
     log("delInput");
-    this.parentNode.removeChild(this);
-    nbInput--;
+    //this.parentNode.removeChild(this);
+    //nbInput--;
 }
 
 function listInput() {
