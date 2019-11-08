@@ -75,6 +75,8 @@ function onButtonClick3() {
 }
 
 function onButtonClick4() {
-    var x = document.getElementsByName("tags").value;
-    log(x);
+    var x = document.getElementsByName("tags");
+    for (var i = 0; i < x.length; i++) {
+        log(x[i].value);
+    }
 }
