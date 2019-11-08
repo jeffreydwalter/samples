@@ -19,6 +19,7 @@ index: index.html
         <button class="btn btn-sm btn-primary add_more_button">Add More Fields</button>
     </div>
 </div>
+<br><br><button>List field</button>
 
 {% include output_helper.html %}
 
@@ -35,6 +36,9 @@ index: index.html
     if (isWebBluetoothEnabled()) {
       onButtonClick2();
     }
+  });
+  document.querySelector("button:nth-of-type(3)").addEventListener('click', function() {
+    onButtonClick4();
   });
   $(document).ready(function() {
     onButtonClick3();
