@@ -65,7 +65,9 @@ function addInput() {
     if (nbInput < maxInput){
         nbInput++;
         var div = document.getElementById("divInput");
-        div.appendChild('<div><input type="text" name="tags"/><button class="delInput"">Remove</button></div>');
+        var newSubDiv = document.createElement("div");
+        newSubDiv.innerHTML = '<input type="text" name="tags"/><button class="delInput"">Remove</button>'
+        div.appendChild(newSubDiv);
     }
 }
 
