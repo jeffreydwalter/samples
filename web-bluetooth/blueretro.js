@@ -71,16 +71,16 @@ function addInput() {
         newInput.setAttribute("class", "input");
         var newButton = document.createElement("button");
         newButton.innerHTML = 'Delete';
-        newButton.addEventListener("click", delInput);
+        newButton.addEventListener("click", delInput(this));
         newSubDiv.appendChild(newInput);
         newSubDiv.appendChild(newButton);
         div.appendChild(newSubDiv);
     }
 }
 
-function delInput() {
+function delInput(element) {
     log("delInput");
-    this.parent('div').remove();
+    element.parentNode.removeChild(element);
     nbInput--;
 }
 
