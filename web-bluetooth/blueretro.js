@@ -79,9 +79,8 @@ function addInput() {
 }
 
 function delInput() {
-    log("delInput");
-    //this.parentNode.removeChild(this);
-    //nbInput--;
+    this.parentNode.remove();
+    nbInput--;
 }
 
 function listInput() {
