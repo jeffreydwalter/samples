@@ -9,39 +9,40 @@ index: index.html
 
 {% include_relative _includes/intro.html %}
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-<button>Connect BlueRetro</button>
-<br><button>Get config</button>
+<button id="btConn">Connect BlueRetro</button>
+<br><button id="btGetCfg">Get config</button>
 <br>
-<br><div class="input_fields_container_part">
+<br><div id="divInput">
     <div><input type="text" name="tags">
-        <button class="btn btn-sm btn-primary add_more_button">Add More Fields</button>
+        <button id="addInput">Add mapping</button>
     </div>
 </div>
-<br><br><button>List field</button>
+<br><br><button id="listInput">List mapping</button>
 
 {% include output_helper.html %}
 
 {% include js_snippet.html filename='blueretro.js' %}
 
 <script>
-  document.querySelector('button').addEventListener('click', function() {
+  document.getElementById("btConn").addEventListener('click', function() {
     if (isWebBluetoothEnabled()) {
       ChromeSamples.clearLog();
-      onButtonClick();
+      btConn();
     }
   });
-  document.querySelector("button:nth-of-type(2)").addEventListener('click', function() {
+  document.getElementById("btGetCfg").addEventListener('click', function() {
     if (isWebBluetoothEnabled()) {
-      onButtonClick2();
+      btGetCfg();
     }
   });
-  document.querySelector("button:nth-of-type(3)").addEventListener('click', function() {
-    onButtonClick4();
+  document.getElementById("addInput").addEventListener('click', function() {
+    addInput();
   });
-  $(document).ready(function() {
-    onButtonClick3();
+  document.getElementById("listInput").addEventListener('click', function() {
+    listInput();
+  });
+  document.getElementsByClass("delInput").addEventListener('click', function() {
+    delInput();
   });
 </script>
 

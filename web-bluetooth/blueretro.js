@@ -15,9 +15,11 @@ var brUuid = [
     '56830f56-5180-fab0-314b-2fa176799a0d',
 ];
 
+var maxInput = 255;
+var nbInput = 1;
 let configChar = null;
 
-function onButtonClick() {
+function btConn() {
   log('Requesting Bluetooth Device...');
   navigator.bluetooth.requestDevice(
     {filters: [{name: 'BlueRetro'}],
@@ -48,7 +50,7 @@ function onButtonClick() {
   });
 }
 
-function onButtonClick2() {
+function btGetCfg() {
   battSrvc.readValue()
   .then(value => {
     let config = value.getUint8(0);
@@ -59,22 +61,20 @@ function onButtonClick2() {
   });
 }
 
-function onButtonClick3() {
-    var max_fields_limit      = 255; //set limit for maximum input fields
-    var x = 1; //initialize counter for text box
-    $('.add_more_button').click(function(e){ //click event on add more fields button having class add_more_button
-        e.preventDefault();
-        if(x < max_fields_limit){ //check conditions
-            x++; //counter increment
-            $('.input_fields_container_part').append('<div><input type="text" name="tags"/><a href="#" class="remove_field" style="margin-left:10px;">Remove</a></div>'); //add input field
-        }
-    });
-    $('.input_fields_container_part').on("click",".remove_field", function(e){ //user click on remove text links
-        e.preventDefault(); $(this).parent('div').remove(); x--;
-    })
+function addInput() {
+    if (nbInput < maxInput){
+        nbInput++;
+        var div = document.getElementById("divInput");
+        div.appendChild('<div><input type="text" name="tags"/><button class="delInput"">Remove</button></div>');
+    }
 }
 
-function onButtonClick4() {
+function delInput() {
+    this.parent('div').remove();
+    nbInput--;
+}
+
+function listInput() {
     var x = document.getElementsByName("tags");
     for (var i = 0; i < x.length; i++) {
         log(x[i].value);
