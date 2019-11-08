@@ -9,8 +9,16 @@ index: index.html
 
 {% include_relative _includes/intro.html %}
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
 <button>Connect BlueRetro</button>
-<button>Get config</button>
+<br><button>Get config</button>
+<br>
+<br><div class="input_fields_container_part">
+    <div><input type="text" name="tags">
+        <button class="btn btn-sm btn-primary add_more_button">Add More Fields</button>
+    </div>
+</div>
 
 {% include output_helper.html %}
 
@@ -27,6 +35,9 @@ index: index.html
     if (isWebBluetoothEnabled()) {
       onButtonClick2();
     }
+  });
+  document.ready(function() {
+    onButtonClick3();
   });
 </script>
 
