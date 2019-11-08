@@ -72,6 +72,7 @@ function addInput() {
 }
 
 function delInput() {
+    log("delInput");
     this.parent('div').remove();
     nbInput--;
 }
