@@ -134,6 +134,7 @@ function initField() {
         btnSelect.add(option);
     }
     btnSelect.setAttribute("class", "src");
+    btnSelect.setAttribute("style", "max-width:15%;");
     var div = document.getElementById("divInput");
     var newSubDiv = document.createElement("div");
     newSubDiv.appendChild(btnSelect);
@@ -188,7 +189,7 @@ function addInput() {
         var div = document.getElementById("divInput");
         var newSubDiv = document.createElement("div");
         var newButton = document.createElement("button");
-        newButton.innerHTML = 'Delete';
+        newButton.innerHTML = '-';
         newButton.addEventListener("click", delInput);
         newSubDiv.appendChild(btnSelect.cloneNode(true));
         newSubDiv.appendChild(newButton);
