@@ -133,6 +133,7 @@ function initField() {
         option.text= btnList[i];
         btnSelect.add(option);
     }
+    btnSelect.setAttribute("class", "src");
     var div = document.getElementById("divInput");
     div.appendChild(btnSelect);
 }
@@ -184,13 +185,13 @@ function addInput() {
         nbInput++;
         var div = document.getElementById("divInput");
         var newSubDiv = document.createElement("div");
-        var newInput = document.createElement("input");
-        newInput.setAttribute("type", "text");
-        newInput.setAttribute("class", "input");
+        //var newInput = document.createElement("input");
+        //newInput.setAttribute("type", "text");
+        //newInput.setAttribute("class", "input");
         var newButton = document.createElement("button");
         newButton.innerHTML = 'Delete';
         newButton.addEventListener("click", delInput);
-        newSubDiv.appendChild(newInput);
+        newSubDiv.appendChild(btnSelect);
         newSubDiv.appendChild(newButton);
         div.appendChild(newSubDiv);
     }
@@ -202,7 +203,7 @@ function delInput() {
 }
 
 function listInput() {
-    var x = document.getElementsByClassName("input");
+    var x = document.getElementsByClassName("src");
     for (var i = 0; i < x.length; i++) {
         log(x[i].value);
     }
