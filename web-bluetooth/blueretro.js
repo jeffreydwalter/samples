@@ -130,8 +130,8 @@ function initField() {
     for (var i = 0; i < btnList.length; i++) {
         option  = document.createElement("option");
         option.setAttribute("value", i);
-        option.innerHTML(btnList[i]);
-        btnSelect.appendChild(option);
+        option.text= btnList[i];
+        btnSelect.add(option);
     }
     var div = document.getElementById("divInput");
     div.appendChild(btnSelect);
