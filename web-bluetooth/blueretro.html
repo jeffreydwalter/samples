@@ -24,6 +24,7 @@ index: index.html
 {% include js_snippet.html filename='blueretro.js' %}
 
 <script>
+  window.addEventListener('DOMContentLoaded', initField);
   document.getElementById("btConn").addEventListener('click', function() {
     if (isWebBluetoothEnabled()) {
       ChromeSamples.clearLog();
@@ -35,12 +36,8 @@ index: index.html
       btGetCfg();
     }
   });
-  document.getElementById("addInput").addEventListener('click', function() {
-    addInput();
-  });
-  document.getElementById("listInput").addEventListener('click', function() {
-    listInput();
-  });
+  document.getElementById("addInput").addEventListener('click', addInput);
+  document.getElementById("listInput").addEventListener('click', listInput);
 </script>
 
 {% include_relative _includes/utils.html %}

@@ -124,6 +124,9 @@ var maxInput = 255;
 var nbInput = 1;
 let configChar = null;
 
+function initField() {
+}
+
 function btConn() {
   log('Requesting Bluetooth Device...');
   navigator.bluetooth.requestDevice(
