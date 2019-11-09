@@ -135,7 +135,9 @@ function initField() {
     }
     btnSelect.setAttribute("class", "src");
     var div = document.getElementById("divInput");
-    div.appendChild(btnSelect);
+    var newSubDiv = document.createElement("div");
+    newSubDiv.appendChild(btnSelect);
+    div.appendChild(newSubDiv);
 }
 
 function btConn() {
