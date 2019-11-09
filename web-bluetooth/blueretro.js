@@ -123,8 +123,18 @@ var btnList = [
 var maxInput = 255;
 var nbInput = 1;
 let configChar = null;
+var btnSelect = null;
 
 function initField() {
+    btnSelect = document.createElement("select");
+    for (var i = 0; i < btnList.length; i++) {
+        option  = document.createElement("option");
+        option.setAttribute("value", i);
+        option.innerHTML(btnList[i]);
+        btnSelect.appendChild(option);
+    }
+    var div = document.getElementById("divInput");
+    div.appendChild(btnSelect);
 }
 
 function btConn() {
