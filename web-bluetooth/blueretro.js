@@ -187,13 +187,10 @@ function addInput() {
         nbInput++;
         var div = document.getElementById("divInput");
         var newSubDiv = document.createElement("div");
-        //var newInput = document.createElement("input");
-        //newInput.setAttribute("type", "text");
-        //newInput.setAttribute("class", "input");
         var newButton = document.createElement("button");
         newButton.innerHTML = 'Delete';
         newButton.addEventListener("click", delInput);
-        newSubDiv.appendChild(btnSelect);
+        newSubDiv.appendChild(btnSelect.cloneNode(true));
         newSubDiv.appendChild(newButton);
         div.appendChild(newSubDiv);
     }
