@@ -123,22 +123,31 @@ var btnList = [
 var maxInput = 255;
 var nbInput = 1;
 let configChar = null;
-var btnSelect = null;
+var divCfg = null;
 
 function initField() {
-    btnSelect = document.createElement("select");
+    divCfg = document.createElement("div");
+
+    /* Src */
+    var src = document.createElement("select");
+    src.setAttribute("style", "max-width:15%;");
     for (var i = 0; i < btnList.length; i++) {
         option  = document.createElement("option");
         option.setAttribute("value", i);
-        option.text= btnList[i];
-        btnSelect.add(option);
+        option.text = btnList[i];
+        src.add(option);
     }
-    btnSelect.setAttribute("class", "src");
-    btnSelect.setAttribute("style", "max-width:15%;");
+    src.setAttribute("class", "src");
+    divCfg.appendChild(src);
+
+    /* Dest */
+    var dest = src.cloneNode(true);
+    dest.setAttribute("class", "dest");
+    divCfg.appendChild(dest);
+
+    /* Append first cfg */
     var div = document.getElementById("divInput");
-    var newSubDiv = document.createElement("div");
-    newSubDiv.appendChild(btnSelect);
-    div.appendChild(newSubDiv);
+    div.appendChild(divCfg);
 }
 
 function btConn() {
@@ -187,11 +196,10 @@ function addInput() {
     if (nbInput < maxInput){
         nbInput++;
         var div = document.getElementById("divInput");
-        var newSubDiv = document.createElement("div");
+        var newSubDiv = divCfg.cloneNode(true);
         var newButton = document.createElement("button");
         newButton.innerHTML = '-';
         newButton.addEventListener("click", delInput);
-        newSubDiv.appendChild(btnSelect.cloneNode(true));
         newSubDiv.appendChild(newButton);
         div.appendChild(newSubDiv);
     }
