@@ -121,7 +121,7 @@ var btnList = [
 ];
 
 var multitapCfg = [
-    'None,
+    'None',
     'Slot 1',
     'Slot 2',
     'Dual',
