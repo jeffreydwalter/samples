@@ -120,7 +120,40 @@ var btnList = [
     'KB: R Win',
 ];
 
+var multitapCfg = [
+    'None,
+    'Slot 1',
+    'Slot 2',
+    'Dual',
+    'Special',
+];
+
+var devCfg = [
+    'Auto',
+    'GamePad',
+    'GamePadAlt',
+    'Keyboard',
+    'Mouse',
+];
+
+var scaling = [
+    'Linear',
+    'Aggressive',
+    'Relaxed',
+    'Wide',
+    'S-Curve',
+];
+
+var diagScaling = [
+    'Auto',
+    'Circular->Circular',
+    'Circular->N64 Hexagone',
+    'Circular->Square',
+];
+
 const maxOutput = 12;
+const maxMax = 255;
+const maxThres = 100;
 
 var maxInput = 255;
 var nbInput = 1;
@@ -160,16 +193,24 @@ function initField() {
     divCfg.appendChild(destId);
 
     /* Max */
-    var max = document.createElement("input");
+    var max = document.createElement("select");
     max.setAttribute("style", "max-width:12%;");
-    max.setAttribute("type", "range");
-    max.setAttribute("min", "5");
-    max.setAttribute("max", "255");
-    max.setAttribute("step", "5");
-    max.setAttribute("value", "100");
+    for (var i = 5; i <= maxMax; i += 5) {
+        var option  = document.createElement("option");
+        option.setAttribute("value", i);
+        option.text = i;
+        max.add(option);
+    }
     max.setAttribute("class", "max");
     divCfg.appendChild(max);
 
+    /* Threshold */
+
+    /* Deadone */
+
+    /* Turbo */
+
+    /* Scaling */
 
     /* Append first cfg */
     var div = document.getElementById("divInput");
