@@ -120,6 +120,8 @@ var btnList = [
     'KB: R Win',
 ];
 
+const maxOutput = 12;
+
 var maxInput = 255;
 var nbInput = 1;
 let configChar = null;
@@ -132,7 +134,7 @@ function initField() {
     var src = document.createElement("select");
     src.setAttribute("style", "max-width:15%;");
     for (var i = 0; i < btnList.length; i++) {
-        option  = document.createElement("option");
+        var option  = document.createElement("option");
         option.setAttribute("value", i);
         option.text = btnList[i];
         src.add(option);
@@ -144,6 +146,17 @@ function initField() {
     var dest = src.cloneNode(true);
     dest.setAttribute("class", "dest");
     divCfg.appendChild(dest);
+
+    /* Dest ID */
+    var destId = document.createElement("select");
+    for (var i = 0; i < maxOutput; i++) {
+        var option  = document.createElement("option");
+        option.setAttribute("value", i);
+        option.text = "Output " + i;
+        destId.add(option);
+    }
+    destId.setAttribute("class", "destId");
+    divCfg.appendChild(destId);
 
     /* Append first cfg */
     var div = document.getElementById("divInput");
