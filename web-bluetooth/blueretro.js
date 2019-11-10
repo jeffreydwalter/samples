@@ -132,7 +132,7 @@ function initField() {
 
     /* Src */
     var src = document.createElement("select");
-    src.setAttribute("style", "max-width:15%;");
+    src.setAttribute("style", "max-width:12%;");
     for (var i = 0; i < btnList.length; i++) {
         var option  = document.createElement("option");
         option.setAttribute("value", i);
@@ -149,14 +149,27 @@ function initField() {
 
     /* Dest ID */
     var destId = document.createElement("select");
+    destId.setAttribute("style", "max-width:12%;");
     for (var i = 0; i < maxOutput; i++) {
         var option  = document.createElement("option");
         option.setAttribute("value", i);
-        option.text = "Output " + i;
+        option.text = "Output " + (i + 1);
         destId.add(option);
     }
     destId.setAttribute("class", "destId");
     divCfg.appendChild(destId);
+
+    /* Max */
+    var max = document.createElement("input");
+    destId.setAttribute("style", "max-width:12%;");
+    destId.setAttribute("type", "range");
+    destId.setAttribute("min", "5");
+    destId.setAttribute("max", "255");
+    destId.setAttribute("step", "5");
+    destId.setAttribute("value", "100");
+    destId.setAttribute("class", "max");
+    divCfg.appendChild(max);
+
 
     /* Append first cfg */
     var div = document.getElementById("divInput");
