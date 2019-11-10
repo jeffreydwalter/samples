@@ -161,13 +161,13 @@ function initField() {
 
     /* Max */
     var max = document.createElement("input");
-    destId.setAttribute("style", "max-width:12%;");
-    destId.setAttribute("type", "range");
-    destId.setAttribute("min", "5");
-    destId.setAttribute("max", "255");
-    destId.setAttribute("step", "5");
-    destId.setAttribute("value", "100");
-    destId.setAttribute("class", "max");
+    max.setAttribute("style", "max-width:12%;");
+    max.setAttribute("type", "range");
+    max.setAttribute("min", "5");
+    max.setAttribute("max", "255");
+    max.setAttribute("step", "5");
+    max.setAttribute("value", "100");
+    max.setAttribute("class", "max");
     divCfg.appendChild(max);
 
 
