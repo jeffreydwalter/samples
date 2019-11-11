@@ -329,9 +329,9 @@ function addInput() {
         newButton.innerHTML = '-';
         newButton.addEventListener("click", delInput);
         newSubDiv.appendChild(newButton);
-        newSubDiv.querySelector('.four').value = 100;
-        newSubDiv.querySelector('.five').value = 50;
-        newSubDiv.querySelector('.six').value = 135;
+        newSubDiv.querySelector('.max').value = 100;
+        newSubDiv.querySelector('.thres').value = 50;
+        newSubDiv.querySelector('.dz').value = 135;
         div.appendChild(newSubDiv);
     }
 }
