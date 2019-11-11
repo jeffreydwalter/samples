@@ -163,6 +163,78 @@ var nbInput = 1;
 let configChar = null;
 var mappingElement = null;
 
+function initGlobalCfg() {
+    var div = document.createElement("div");
+
+    /* Multitap */
+    var tap = document.createElement("select");
+    for (var i = 0; i < multitapCfg.length; i++) {
+        var option  = document.createElement("option");
+        option.value = i;
+        option.text = multitapCfg[i];
+        tap.add(option);
+    }
+    tap.setAttribute("class", "multitapCfg");
+    div.appendChild(tap);
+
+    var divGlobalCfg = document.getElementById("divGlobalCfg");
+    divGlobalCfg.appendChild(div);
+}
+
+function initOutputSelect() {
+    var div = document.createElement("div");
+
+    /* Output select */
+    var main = document.createElement("select");
+    for (var i = 0; i < maxOutput; i++) {
+        var option  = document.createElement("option");
+        option.value = i;
+        option.text = "Output " + (i + 1);
+        main.add(option);
+    }
+    main.setAttribute("class", "outputSelect");
+    div.appendChild(main);
+
+    var divOutputCfg = document.getElementById("divOutputCfg");
+    divOutputCfg.appendChild(div);
+}
+
+function initOutputMode() {
+    var div = document.createElement("div");
+
+    /* Output select */
+    var main = document.createElement("select");
+    for (var i = 0; i < devCfg.length; i++) {
+        var option  = document.createElement("option");
+        option.value = i;
+        option.text = devCfg[i];
+        main.add(option);
+    }
+    main.setAttribute("class", "outputMode");
+    div.appendChild(main);
+
+    var divOutputCfg = document.getElementById("divOutputCfg");
+    divOutputCfg.appendChild(div);
+}
+
+function initInputSelect() {
+    var div = document.createElement("div");
+
+    /* Output select */
+    var main = document.createElement("select");
+    for (var i = 0; i < maxMainInput; i++) {
+        var option  = document.createElement("option");
+        option.value = i;
+        option.text = "Input " + (i + 1);
+        main.add(option);
+    }
+    main.setAttribute("class", "inputSelect");
+    div.appendChild(main);
+
+    var divInputCfg = document.getElementById("divInputCfg");
+    divInputCfg.appendChild(div);
+}
+
 function initInputAssign() {
     var div = document.createElement("div");
 
@@ -195,12 +267,8 @@ function initInputAssign() {
     sub.setAttribute("class", "subInput");
     div.appendChild(sub);
 
-    var divGlobalCfg = document.getElementById("divOutputCfg");
-    divGlobalCfg.appendChild(div);
-}
-
-function initGlobalCfg() {
-
+    var divInputCfg = document.getElementById("divInputCfg");
+    divOutputCfg.appendChild(div);
 }
 
 function initOutputMapping() {
@@ -325,13 +393,17 @@ function initOutputMapping() {
     divMapping = document.createElement("div");
     divMapping.appendChild(mappingElement);
     divMapping.id = "divMapping";
-    var divOutputCfg = document.getElementById("divOutputCfg");
+    var divInputCfg = document.getElementById("divInputCfg");
     divMappingGrp.appendChild(divMapping);
     divMappingGrp.appendChild(addButton);
-    divOutputCfg.appendChild(divMappingGrp);
+    divInputCfg.appendChild(divMappingGrp);
 }
 
 function initBlueRetroCfg() {
+    initGlobalCfg();
+    initOutputSelect();
+    initOutputMode();
+    initInputSelect();
     initInputAssign();
     initOutputMapping();
 }
@@ -355,6 +427,7 @@ function btConn() {
     document.getElementById("divBtConn").style.display = 'none';
     document.getElementById("divGlobalCfg").style.display = 'block';
     document.getElementById("divOutputCfg").style.display = 'block';
+    document.getElementById("divInputCfg").style.display = 'block';
   })
   .catch(error => {
     log('Argh! ' + error);
