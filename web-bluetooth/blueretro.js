@@ -146,9 +146,9 @@ var scaling = [
 
 var diagScaling = [
     'Auto',
-//    'Circular->Circular',
-//    'Circular->N64 Hexagone',
-//    'Circular->Square',
+    'Circular->Circular',
+    'Circular->N64 Hexagone',
+    'Circular->Square',
 ];
 
 const maxOutput = 12;
@@ -233,7 +233,7 @@ function initField() {
     divCfg.appendChild(dz);
 
     /* Turbo */
-/*    var turbo = document.createElement("select");
+    var turbo = document.createElement("select");
     turbo.setAttribute("style", "max-width:10%;");
     for (var i = 0; i < maxTurbo; i++) {
         var option  = document.createElement("option");
@@ -248,9 +248,9 @@ function initField() {
     }
     turbo.setAttribute("class", "turbo");
     divCfg.appendChild(turbo);
-*/
+
     /* Scaling */
-/*    var sca = document.createElement("select");
+    var sca = document.createElement("select");
     sca.setAttribute("style", "max-width:10%;");
     for (var i = 0; i < scaling.length; i++) {
         var option  = document.createElement("option");
@@ -260,17 +260,17 @@ function initField() {
     }
     sca.setAttribute("class", "scaling");
     divCfg.appendChild(sca);
-*/
+
     /* Scaling diag */
     var diag = document.createElement("select");
     diag.setAttribute("style", "max-width:10%;");
-/*    for (var i = 0; i < diagScaling.length; i++) {
+    for (var i = 0; i < diagScaling.length; i++) {
         var option  = document.createElement("option");
         option.value = i;
         option.text = diagScaling[i];
         diag.add(option);
-    }:
-*/    diag.setAttribute("class", "diag");
+    }
+    diag.setAttribute("class", "diag");
     divCfg.appendChild(diag);
 
     /* Append first cfg */
