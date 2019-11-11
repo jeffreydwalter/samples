@@ -167,7 +167,7 @@ const maxTurbo = 16;
 
 var maxInput = 255;
 var nbInput = 1;
-let configChar = null;
+let brService = null;
 var mappingElement = null;
 
 function initGlobalCfg() {
@@ -430,6 +430,21 @@ function initBlueRetroCfg() {
     initOutputMapping();
 }
 
+function loadGlobalCfg() {
+    brService.getCharacteristic(brUuid[1])
+    .then(chrc => {
+        log('Reading Global Config...');
+        return chrc.readValue();
+    })
+    .then(value => {
+        document.getElementById("systemCfg").value(value.getUint16(3));
+        document.getElementById("multitapCfg").value(value.getUint16(4));
+    })
+    .catch(error => {
+        log('Argh! ' + error);
+    });
+}
+
 function btConn() {
   log('Requesting Bluetooth Device...');
   navigator.bluetooth.requestDevice(
@@ -441,11 +456,10 @@ function btConn() {
   })
   .then(server => {
     log('Getting BlueRetro Service...');
-    return server.getPrimaryService(brUuid[0]);
-  })
-  .then(service => {
-    log('Getting Config Characteristic...');
-    configChar = service.getCharacteristic(brUuid[1]);
+    brService = server.getPrimaryService(brUuid[0]);
+
+    initBlueRetroCfg();
+    loadGlobalCfg();
     document.getElementById("divBtConn").style.display = 'none';
     document.getElementById("divGlobalCfg").style.display = 'block';
     document.getElementById("divOutputCfg").style.display = 'block';
