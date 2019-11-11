@@ -181,7 +181,7 @@ function initGlobalCfg() {
         option.text = systemCfg[i];
         sel.add(option);
     }
-    sel.setAttribute("class", "systemCfg");
+    sel.id("systemCfg");
     div.appendChild(sel);
 
     var divGlobalCfg = document.getElementById("divGlobalCfg");
@@ -197,7 +197,7 @@ function initGlobalCfg() {
         option.text = multitapCfg[i];
         sel.add(option);
     }
-    sel.setAttribute("class", "multitapCfg");
+    sel.id("multitapCfg");
     div.appendChild(sel);
 
     divGlobalCfg.appendChild(div);
@@ -214,7 +214,7 @@ function initOutputSelect() {
         option.text = "Output " + (i + 1);
         main.add(option);
     }
-    main.setAttribute("class", "outputSelect");
+    main.id("outputSelect");
     div.appendChild(main);
 
     var divOutputCfg = document.getElementById("divOutputCfg");
@@ -232,7 +232,7 @@ function initOutputMode() {
         option.text = devCfg[i];
         main.add(option);
     }
-    main.setAttribute("class", "outputMode");
+    main.id("outputMode");
     div.appendChild(main);
 
     var divOutputCfg = document.getElementById("divOutputCfg");
@@ -250,7 +250,7 @@ function initInputSelect() {
         option.text = "Input " + (i + 1);
         main.add(option);
     }
-    main.setAttribute("class", "inputSelect");
+    main.id("inputSelect");
     div.appendChild(main);
 
     var divInputCfg = document.getElementById("divInputCfg");
@@ -269,7 +269,7 @@ function initInputAssign() {
         option.text = "Input " + (i + 1);
         main.add(option);
     }
-    main.setAttribute("class", "mainInput");
+    main.id("mainInput");
     div.appendChild(main);
 
     /* Sub dev */
@@ -286,7 +286,7 @@ function initInputAssign() {
         }
         sub.add(option);
     }
-    sub.setAttribute("class", "subInput");
+    sub.id("subInput");
     div.appendChild(sub);
 
     var divInputCfg = document.getElementById("divInputCfg");
