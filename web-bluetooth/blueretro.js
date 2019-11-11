@@ -229,7 +229,7 @@ function initField() {
         dz.add(option);
     }
     dz.setAttribute("class", "dz");
-    thres.value = 135;
+    dz.value = 135;
     divCfg.appendChild(dz);
 
     /* Turbo */
