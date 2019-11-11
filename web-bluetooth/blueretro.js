@@ -120,7 +120,14 @@ var btnList = [
     'KB: R Win',
 ];
 
+var systemCfg = [
+    'Auto',
+    'N64',
+    'DreamCast',
+];
+
 var multitapCfg = [
+    'Auto',
     'None',
     'Slot 1',
     'Slot 2',
@@ -166,18 +173,33 @@ var mappingElement = null;
 function initGlobalCfg() {
     var div = document.createElement("div");
 
+    /* System */
+    var sel = document.createElement("select");
+    for (var i = 0; i < systemCfg.length; i++) {
+        var option  = document.createElement("option");
+        option.value = i;
+        option.text = systemCfg[i];
+        sel.add(option);
+    }
+    sel.setAttribute("class", "systemCfg");
+    div.appendChild(sel);
+
+    var divGlobalCfg = document.getElementById("divGlobalCfg");
+    divGlobalCfg.appendChild(div);
+
+    div = document.createElement("div");
+
     /* Multitap */
-    var tap = document.createElement("select");
+    sel = document.createElement("select");
     for (var i = 0; i < multitapCfg.length; i++) {
         var option  = document.createElement("option");
         option.value = i;
         option.text = multitapCfg[i];
-        tap.add(option);
+        sel.add(option);
     }
-    tap.setAttribute("class", "multitapCfg");
-    div.appendChild(tap);
+    sel.setAttribute("class", "multitapCfg");
+    div.appendChild(sel);
 
-    var divGlobalCfg = document.getElementById("divGlobalCfg");
     divGlobalCfg.appendChild(div);
 }
 
