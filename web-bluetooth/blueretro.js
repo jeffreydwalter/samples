@@ -151,6 +151,8 @@ var diagScaling = [
     'Circular->Square',
 ];
 
+const maxInput = 12;
+const maxSubInput = 4;
 const maxOutput = 12;
 const maxMax = 255;
 const maxThres = 100;
@@ -161,7 +163,43 @@ var nbInput = 1;
 let configChar = null;
 var divCfg = null;
 
-function initField() {
+function initInputAssign() {
+    divCfg = document.createElement("div");
+
+    /* Main dev */
+    var main = document.createElement("select");
+    main.setAttribute("style", "max-width:40%;");
+    for (var i = 0; i < maxInput; i++) {
+        var option  = document.createElement("option");
+        option.value = i;
+        option.text = "Input " + i;
+        main.add(option);
+    }
+    main.setAttribute("class", "mainInput");
+    divCfg.appendChild(main);
+
+    /* Sub dev */
+    var sub = document.createElement("select");
+    sub.setAttribute("style", "max-width:40%;");
+    for (var i = 0; i <= maxSubInput; i++) {
+        var option  = document.createElement("option");
+        option.value = i;
+        if (i) {
+            option.text = "Sub Input " + i;
+        }
+        else {
+            option.text = "Sub Input Merged";
+        }
+        sub.add(option);
+    }
+    sub.setAttribute("class", "subInput");
+    divCfg.appendChild(sub);
+
+    var div = document.getElementById("divGlobalCfg");
+    div.appendChild(divCfg);
+}
+
+function initOutputMapping() {
     divCfg = document.createElement("div");
 
     /* Src */
@@ -276,6 +314,11 @@ function initField() {
     /* Append first cfg */
     var div = document.getElementById("divInput");
     div.appendChild(divCfg);
+}
+
+function initBlueRetroCfg() {
+    initInputAssign();
+    initOutputMapping();
 }
 
 function btConn() {

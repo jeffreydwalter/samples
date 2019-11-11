@@ -26,7 +26,7 @@ index: index.html
 {% include js_snippet.html filename='blueretro.js' %}
 
 <script>
-  window.addEventListener('DOMContentLoaded', initField);
+  window.addEventListener('DOMContentLoaded', initBlueRetroCfg);
   document.getElementById("btConn").addEventListener('click', function() {
     if (isWebBluetoothEnabled()) {
       ChromeSamples.clearLog();
