@@ -168,7 +168,7 @@ function initField() {
     src.setAttribute("style", "max-width:12%;");
     for (var i = 0; i < btnList.length; i++) {
         var option  = document.createElement("option");
-        option.setAttribute("value", i);
+        option.value = i;
         option.text = btnList[i];
         src.add(option);
     }
@@ -185,7 +185,7 @@ function initField() {
     destId.setAttribute("style", "max-width:12%;");
     for (var i = 0; i < maxOutput; i++) {
         var option  = document.createElement("option");
-        option.setAttribute("value", i);
+        option.value = i;
         option.text = "Output " + (i + 1);
         destId.add(option);
     }
@@ -197,11 +197,12 @@ function initField() {
     max.setAttribute("style", "max-width:12%;");
     for (var i = 5; i <= maxMax; i += 5) {
         var option  = document.createElement("option");
-        option.setAttribute("value", i);
-        option.text = i;
+        option.value = i;
+        option.text = i + "%";
         max.add(option);
     }
     max.setAttribute("class", "max");
+    max.value = 100;
     divCfg.appendChild(max);
 
     /* Threshold */
