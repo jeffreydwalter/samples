@@ -431,6 +431,7 @@ function initBlueRetroCfg() {
 }
 
 function loadGlobalCfg() {
+    log('Get Global Config CHRC...');
     brService.getCharacteristic(brUuid[1])
     .then(chrc => {
         log('Reading Global Config...');
@@ -459,6 +460,7 @@ function btConn() {
     return server.getPrimaryService(brUuid[0]);
   })
   .then(service => {
+    log('Init Cfg DOM...');
     brService = service;
     initBlueRetroCfg();
     loadGlobalCfg();
