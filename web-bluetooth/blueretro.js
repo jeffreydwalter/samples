@@ -456,8 +456,10 @@ function btConn() {
   })
   .then(server => {
     log('Getting BlueRetro Service...');
-    brService = server.getPrimaryService(brUuid[0]);
-
+    return server.getPrimaryService(brUuid[0]);
+  })
+  .then(service => {
+    brService = service;
     initBlueRetroCfg();
     loadGlobalCfg();
     document.getElementById("divBtConn").style.display = 'none';
