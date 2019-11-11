@@ -293,16 +293,10 @@ function btConn() {
   })
   .then(service => {
     log('Getting Config Characteristic...');
-    return  service.getCharacteristic(brUuid[1]);
-  })
-  .then(characteristic => {
-    log('Reading Config...');
-    configChar = characteristic;
-    return characteristic.readValue();
-  })
-  .then(value => {
-    let config = value.getUint8(0);
-    log('> Config is ' + config);
+    configChar = service.getCharacteristic(brUuid[1]);
+    document.getElementById("divBtConn").style.display = 'none';
+    document.getElementById("divGlobalCfg").style.display = 'block';
+    document.getElementById("divOutputCfg").style.display = 'block';
   })
   .catch(error => {
     log('Argh! ' + error);

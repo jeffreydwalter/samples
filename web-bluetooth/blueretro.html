@@ -9,11 +9,17 @@ index: index.html
 
 {% include_relative _includes/intro.html %}
 
-<button id="btConn">Connect BlueRetro</button>
 <br><button id="btGetCfg">Get config</button>
 <br>
-<br><div id="divInput"></div>
-<button id="addInput">+</button>
+<div id="divBtConn">
+    <button id="btConn">Connect BlueRetro</button>
+</div>
+<div id="divGlobalCfg" style="display:none;">
+</div>
+<div id="divOutputCfg" style="display:none;">
+    <div id="divInput"></div>
+    <button id="addInput">+</button>
+</div>
 <br><br><button id="listInput">List mapping</button>
 
 {% include output_helper.html %}
