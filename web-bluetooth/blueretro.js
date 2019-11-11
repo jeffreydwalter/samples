@@ -250,7 +250,7 @@ function initField() {
     divCfg.appendChild(turbo);
 
     /* Scaling */
-/*    var scaling = document.createElement("select");
+    var scaling = document.createElement("select");
     scaling.setAttribute("style", "max-width:12%;");
     for (var i = 0; i < scaling.length; i++) {
         var option  = document.createElement("option");
@@ -260,7 +260,7 @@ function initField() {
     }
     scaling.setAttribute("class", "scaling");
     divCfg.appendChild(scaling);
-*/
+
     /* Scaling diag */
 /*    var diag = document.createElement("select");
     diag.setAttribute("style", "max-width:12%;");
