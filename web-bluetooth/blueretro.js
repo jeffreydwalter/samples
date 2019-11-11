@@ -146,9 +146,9 @@ var scaling = [
 
 var diagScaling = [
     'Auto',
-    'Circular->Circular',
-    'Circular->N64 Hexagone',
-    'Circular->Square',
+//    'Circular->Circular',
+//    'Circular->N64 Hexagone',
+//    'Circular->Square',
 ];
 
 const maxOutput = 12;
