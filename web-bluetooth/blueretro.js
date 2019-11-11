@@ -317,7 +317,7 @@ function initOutputMapping() {
 
     /* Add button */
     var addButton = document.createElement("button");
-    addButton.text = '+';
+    addButton.innerText = '+';
     addButton.addEventListener("click", addInput);
 
     /* Append first cfg */
@@ -378,7 +378,7 @@ function addInput() {
         var div = document.getElementById("divMapping");
         var newSubDiv = mappingElement.cloneNode(true);
         var newButton = document.createElement("button");
-        newButton.innerHTML = '-';
+        newButton.innerText = '-';
         newButton.addEventListener("click", delInput);
         newSubDiv.appendChild(newButton);
         newSubDiv.querySelector('.max').value = 100;
