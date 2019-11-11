@@ -154,6 +154,7 @@ var diagScaling = [
 const maxOutput = 12;
 const maxMax = 255;
 const maxThres = 100;
+const maxTurbo = 16;
 
 var maxInput = 255;
 var nbInput = 1;
@@ -228,11 +229,49 @@ function initField() {
         dz.add(option);
     }
     dz.setAttribute("class", "dz");
+    thres.value = 135;
     divCfg.appendChild(dz);
 
     /* Turbo */
+    var turbo = document.createElement("select");
+    turbo.setAttribute("style", "max-width:12%;");
+    for (var i = 0; i < maxTurbo; i++) {
+        var option  = document.createElement("option");
+        option.value = i;
+        if (i) {
+            option.text = "Framerate/" + i;
+        }
+        else {
+            option.text = "Disable";
+        }
+        turbo.add(option);
+    }
+    turbo.setAttribute("class", "turbo");
+    divCfg.appendChild(turbo);
 
     /* Scaling */
+    var scaling = document.createElement("select");
+    scaling.setAttribute("style", "max-width:12%;");
+    for (var i = 0; i < scaling.length; i++) {
+        var option  = document.createElement("option");
+        option.value = i;
+        option.text = scaling[i];
+        scaling.add(option);
+    }
+    scaling.setAttribute("class", "scaling");
+    divCfg.appendChild(scaling);
+
+    /* Scaling diag */
+    var diag = document.createElement("select");
+    diag.setAttribute("style", "max-width:12%;");
+    for (var i = 0; i < diagScaling.length; i++) {
+        var option  = document.createElement("option");
+        option.value = i;
+        option.text = diagScaling[i];
+        diag.add(option);
+    }:
+    diag.setAttribute("class", "diag");
+    divCfg.appendChild(diag);
 
     /* Append first cfg */
     var div = document.getElementById("divInput");
