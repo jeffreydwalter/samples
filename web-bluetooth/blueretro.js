@@ -438,6 +438,8 @@ function loadGlobalCfg() {
         return chrc.readValue();
     })
     .then(value => {
+        log('Global Config size: ' + value.byteLength);
+        log('First byte: ' + value.getUint8(0));
         document.getElementById("systemCfg").value(value.getUint16(3));
         document.getElementById("multitapCfg").value(value.getUint16(4));
     })
