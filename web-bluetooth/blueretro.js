@@ -263,8 +263,8 @@ function initField() {
 */
     /* Scaling diag */
     var diag = document.createElement("select");
-/*    diag.setAttribute("style", "max-width:10%;");
-    for (var i = 0; i < diagScaling.length; i++) {
+    diag.setAttribute("style", "max-width:10%;");
+/*    for (var i = 0; i < diagScaling.length; i++) {
         var option  = document.createElement("option");
         option.value = i;
         option.text = diagScaling[i];
