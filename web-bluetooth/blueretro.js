@@ -195,7 +195,7 @@ function initInputAssign() {
     sub.setAttribute("class", "subInput");
     div.appendChild(sub);
 
-    var divGlobalCfg = document.getElementById("divGlobalCfg");
+    var divGlobalCfg = document.getElementById("divOutputCfg");
     divGlobalCfg.appendChild(div);
 }
 
