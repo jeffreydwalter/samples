@@ -202,12 +202,33 @@ function initField() {
         max.add(option);
     }
     max.setAttribute("class", "max");
-    max.selectedIndex = (100 / 5) - 1;
+    max.value = 100;
     divCfg.appendChild(max);
 
     /* Threshold */
+    var thres = document.createElement("select");
+    thres.setAttribute("style", "thres-width:12%;");
+    for (var i = 5; i <= maxThres; i += 5) {
+        var option  = document.createElement("option");
+        option.value = i;
+        option.text = i + "%";
+        thres.add(option);
+    }
+    thres.setAttribute("class", "thres");
+    thres.value = 50;
+    divCfg.appendChild(thres);
 
     /* Deadone */
+    var dz = document.createElement("select");
+    dz.setAttribute("style", "dz-width:12%;");
+    for (var i = 5; i <= maxMax; i += 5) {
+        var option  = document.createElement("option");
+        option.value = i;
+        option.text = i/10000 + "%";
+        dz.add(option);
+    }
+    dz.setAttribute("class", "dz");
+    divCfg.appendChild(dz);
 
     /* Turbo */
 
