@@ -263,7 +263,7 @@ function initField() {
 */
     /* Scaling diag */
     var diag = document.createElement("select");
-    diag.setAttribute("style", "max-width:10%;");
+/*    diag.setAttribute("style", "max-width:10%;");
     for (var i = 0; i < diagScaling.length; i++) {
         var option  = document.createElement("option");
         option.value = i;
@@ -272,7 +272,7 @@ function initField() {
     }:
     diag.setAttribute("class", "diag");
     divCfg.appendChild(diag);
-
+*/
     /* Append first cfg */
     var div = document.getElementById("divInput");
     div.appendChild(divCfg);
