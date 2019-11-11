@@ -268,7 +268,7 @@ function initInputAssign() {
     div.appendChild(sub);
 
     var divInputCfg = document.getElementById("divInputCfg");
-    divOutputCfg.appendChild(div);
+    divInputCfg.appendChild(div);
 }
 
 function initOutputMapping() {
