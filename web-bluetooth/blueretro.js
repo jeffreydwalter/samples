@@ -270,9 +270,9 @@ function initField() {
         option.text = diagScaling[i];
         diag.add(option);
     }:
-    diag.setAttribute("class", "diag");
+*/    diag.setAttribute("class", "diag");
     divCfg.appendChild(diag);
-*/
+
     /* Append first cfg */
     var div = document.getElementById("divInput");
     div.appendChild(divCfg);
