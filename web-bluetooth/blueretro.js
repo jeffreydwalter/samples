@@ -161,10 +161,10 @@ const maxTurbo = 16;
 var maxInput = 255;
 var nbInput = 1;
 let configChar = null;
-var divCfg = null;
+var mappingElement = null;
 
 function initInputAssign() {
-    divCfg = document.createElement("div");
+    var div = document.createElement("div");
 
     /* Main dev */
     var main = document.createElement("select");
@@ -172,11 +172,11 @@ function initInputAssign() {
     for (var i = 0; i < maxMainInput; i++) {
         var option  = document.createElement("option");
         option.value = i;
-        option.text = "Input " + i;
+        option.text = "Input " + (i + 1);
         main.add(option);
     }
     main.setAttribute("class", "mainInput");
-    divCfg.appendChild(main);
+    div.appendChild(main);
 
     /* Sub dev */
     var sub = document.createElement("select");
@@ -193,14 +193,18 @@ function initInputAssign() {
         sub.add(option);
     }
     sub.setAttribute("class", "subInput");
-    divCfg.appendChild(sub);
+    div.appendChild(sub);
 
-    var div = document.getElementById("divGlobalCfg");
-    div.appendChild(divCfg);
+    var divGlobalCfg = document.getElementById("divGlobalCfg");
+    divGlobalCfg.appendChild(div);
+}
+
+function initGlobalCfg() {
+
 }
 
 function initOutputMapping() {
-    divCfg = document.createElement("div");
+    mappingElement = document.createElement("div");
 
     /* Src */
     var src = document.createElement("select");
@@ -212,12 +216,12 @@ function initOutputMapping() {
         src.add(option);
     }
     src.setAttribute("class", "src");
-    divCfg.appendChild(src);
+    mappingElement.appendChild(src);
 
     /* Dest */
     var dest = src.cloneNode(true);
     dest.setAttribute("class", "dest");
-    divCfg.appendChild(dest);
+    mappingElement.appendChild(dest);
 
     /* Dest ID */
     var destId = document.createElement("select");
@@ -229,7 +233,7 @@ function initOutputMapping() {
         destId.add(option);
     }
     destId.setAttribute("class", "destId");
-    divCfg.appendChild(destId);
+    mappingElement.appendChild(destId);
 
     /* Max */
     var max = document.createElement("select");
@@ -242,7 +246,7 @@ function initOutputMapping() {
     }
     max.setAttribute("class", "max");
     max.value = 100;
-    divCfg.appendChild(max);
+    mappingElement.appendChild(max);
 
     /* Threshold */
     var thres = document.createElement("select");
@@ -255,7 +259,7 @@ function initOutputMapping() {
     }
     thres.setAttribute("class", "thres");
     thres.value = 50;
-    divCfg.appendChild(thres);
+    mappingElement.appendChild(thres);
 
     /* Deadone */
     var dz = document.createElement("select");
@@ -268,7 +272,7 @@ function initOutputMapping() {
     }
     dz.setAttribute("class", "dz");
     dz.value = 135;
-    divCfg.appendChild(dz);
+    mappingElement.appendChild(dz);
 
     /* Turbo */
     var turbo = document.createElement("select");
@@ -285,7 +289,7 @@ function initOutputMapping() {
         turbo.add(option);
     }
     turbo.setAttribute("class", "turbo");
-    divCfg.appendChild(turbo);
+    mappingElement.appendChild(turbo);
 
     /* Scaling */
     var sca = document.createElement("select");
@@ -297,7 +301,7 @@ function initOutputMapping() {
         sca.add(option);
     }
     sca.setAttribute("class", "scaling");
-    divCfg.appendChild(sca);
+    mappingElement.appendChild(sca);
 
     /* Scaling diag */
     var diag = document.createElement("select");
@@ -309,11 +313,22 @@ function initOutputMapping() {
         diag.add(option);
     }
     diag.setAttribute("class", "diag");
-    divCfg.appendChild(diag);
+    mappingElement.appendChild(diag);
+
+    /* Add button */
+    var addButton = document.createElement("button");
+    addButton.text = '+';
+    addButton.addEventListener("click", addInput);
 
     /* Append first cfg */
-    var div = document.getElementById("divInput");
-    div.appendChild(divCfg);
+    divMappingGrp = document.createElement("div");
+    divMapping = document.createElement("div");
+    divMapping.appendChild(mappingElement);
+    divMapping.id = "divMapping";
+    var divOutputCfg = document.getElementById("divOutputCfg");
+    divMappingGrp.appendChild(divMapping);
+    divMappingGrp.appendChild(addButton);
+    divOutputCfg.appendChild(divMappingGrp);
 }
 
 function initBlueRetroCfg() {
@@ -360,8 +375,8 @@ function btGetCfg() {
 function addInput() {
     if (nbInput < maxInput){
         nbInput++;
-        var div = document.getElementById("divInput");
-        var newSubDiv = divCfg.cloneNode(true);
+        var div = document.getElementById("divMapping");
+        var newSubDiv = mappingElement.cloneNode(true);
         var newButton = document.createElement("button");
         newButton.innerHTML = '-';
         newButton.addEventListener("click", delInput);
