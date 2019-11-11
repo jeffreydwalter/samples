@@ -233,6 +233,7 @@ function initField() {
     divCfg.appendChild(dz);
 
     /* Turbo */
+    /*
     var turbo = document.createElement("select");
     turbo.setAttribute("style", "max-width:12%;");
     for (var i = 0; i < maxTurbo; i++) {
@@ -248,7 +249,7 @@ function initField() {
     }
     turbo.setAttribute("class", "turbo");
     divCfg.appendChild(turbo);
-
+*/
     /* Scaling */
     var scaling = document.createElement("select");
     scaling.setAttribute("style", "max-width:12%;");
