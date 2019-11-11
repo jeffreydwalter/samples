@@ -439,10 +439,9 @@ function loadGlobalCfg() {
     })
     .then(value => {
         log('Global Config size: ' + value.byteLength);
-        log(value.getUint16(2));
-        log(value.getUint16(3));
-        document.getElementById("systemCfg").value = value.getUint16(2);
-        document.getElementById("multitapCfg").value = value.getUint16(3);
+        log(value.getUint32(0));
+        document.getElementById("systemCfg").value = value.getUint16(4);
+        document.getElementById("multitapCfg").value = value.getUint16(6);
     })
     .catch(error => {
         log('Argh! ' + error);
