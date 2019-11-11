@@ -151,7 +151,7 @@ var diagScaling = [
     'Circular->Square',
 ];
 
-const maxInput = 12;
+const maxMainInput = 12;
 const maxSubInput = 4;
 const maxOutput = 12;
 const maxMax = 255;
@@ -169,7 +169,7 @@ function initInputAssign() {
     /* Main dev */
     var main = document.createElement("select");
     main.setAttribute("style", "max-width:40%;");
-    for (var i = 0; i < maxInput; i++) {
+    for (var i = 0; i < maxMainInput; i++) {
         var option  = document.createElement("option");
         option.value = i;
         option.text = "Input " + i;
