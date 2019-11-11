@@ -202,7 +202,7 @@ function initField() {
         max.add(option);
     }
     max.setAttribute("class", "max");
-    max.value = 100;
+    max.setAttribute("value", "100");
     divCfg.appendChild(max);
 
     /* Threshold */
