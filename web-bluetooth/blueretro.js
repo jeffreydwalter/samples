@@ -166,7 +166,7 @@ function initField() {
 
     /* Src */
     var src = document.createElement("select");
-    src.setAttribute("style", "max-width:12%;");
+    src.setAttribute("style", "max-width:10%;");
     for (var i = 0; i < btnList.length; i++) {
         var option  = document.createElement("option");
         option.value = i;
@@ -183,7 +183,7 @@ function initField() {
 
     /* Dest ID */
     var destId = document.createElement("select");
-    destId.setAttribute("style", "max-width:12%;");
+    destId.setAttribute("style", "max-width:10%;");
     for (var i = 0; i < maxOutput; i++) {
         var option  = document.createElement("option");
         option.value = i;
@@ -195,7 +195,7 @@ function initField() {
 
     /* Max */
     var max = document.createElement("select");
-    max.setAttribute("style", "max-width:12%;");
+    max.setAttribute("style", "max-width:10%;");
     for (var i = 5; i <= maxMax; i += 5) {
         var option  = document.createElement("option");
         option.value = i;
@@ -208,7 +208,7 @@ function initField() {
 
     /* Threshold */
     var thres = document.createElement("select");
-    thres.setAttribute("style", "thres-width:12%;");
+    thres.setAttribute("style", "thres-width:10%;");
     for (var i = 5; i <= maxThres; i += 5) {
         var option  = document.createElement("option");
         option.value = i;
@@ -221,7 +221,7 @@ function initField() {
 
     /* Deadone */
     var dz = document.createElement("select");
-    dz.setAttribute("style", "dz-width:12%;");
+    dz.setAttribute("style", "dz-width:10%;");
     for (var i = 5; i <= maxMax; i += 5) {
         var option  = document.createElement("option");
         option.value = i;
@@ -234,7 +234,7 @@ function initField() {
 
     /* Turbo */
     var turbo = document.createElement("select");
-    turbo.setAttribute("style", "max-width:12%;");
+    turbo.setAttribute("style", "max-width:10%;");
     for (var i = 0; i < maxTurbo; i++) {
         var option  = document.createElement("option");
         option.value = i;
@@ -251,7 +251,7 @@ function initField() {
 
     /* Scaling */
     var sca = document.createElement("select");
-    sca.setAttribute("style", "max-width:12%;");
+    sca.setAttribute("style", "max-width:10%;");
     for (var i = 0; i < scaling.length; i++) {
         var option  = document.createElement("option");
         option.value = i;
@@ -262,8 +262,8 @@ function initField() {
     divCfg.appendChild(sca);
 
     /* Scaling diag */
-/*    var diag = document.createElement("select");
-    diag.setAttribute("style", "max-width:12%;");
+    var diag = document.createElement("select");
+    diag.setAttribute("style", "max-width:10%;");
     for (var i = 0; i < diagScaling.length; i++) {
         var option  = document.createElement("option");
         option.value = i;
@@ -272,7 +272,7 @@ function initField() {
     }:
     diag.setAttribute("class", "diag");
     divCfg.appendChild(diag);
-*/
+
     /* Append first cfg */
     var div = document.getElementById("divInput");
     div.appendChild(divCfg);
