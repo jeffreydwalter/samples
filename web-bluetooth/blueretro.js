@@ -228,6 +228,7 @@ function initOutputSelect() {
         main.add(option);
     }
     main.id = "outputSelect";
+    main.addEventListener("change", selectOutput);
     div.appendChild(main);
 
     var divOutputCfg = document.getElementById("divOutputCfg");
@@ -463,7 +464,8 @@ function loadGlobalCfg() {
 
 function loadOutputCfg(cfgId) {
     log('Get Output ' + cfgId + ' Config CHRC...');
-    brService.getCharacteristic(brUuid[cfgId + 15])
+    var indexUuid = 2 + Number(cfgId);
+    brService.getCharacteristic(brUuid[indexUuid])
     .then(chrc => {
         log('Reading Output ' + cfgId + ' Config...');
         return chrc.readValue();
@@ -480,7 +482,6 @@ function loadOutputCfg(cfgId) {
 function loadInputCfg(cfgId) {
     log('Geti Input ' + cfgId + ' Config CHRC...');
     var indexUuid = 2 + Number(cfgId);
-    log('index: ' + indexUuid + ' UUID: ' + brUuid[indexUuid]);
     brService.getCharacteristic(brUuid[indexUuid])
     .then(chrc => {
         log('Reading Input ' + cfgId + ' Config...');
@@ -594,6 +595,10 @@ function addInput() {
 function delInput() {
     this.parentNode.remove();
     nbMapping--;
+}
+
+function selectOutput() {
+    loadOutputCfg(this.value);
 }
 
 function selectInput() {
