@@ -446,19 +446,22 @@ function initBlueRetroCfg() {
 }
 
 function loadGlobalCfg() {
-    log('Get Global Config CHRC...');
-    brService.getCharacteristic(brUuid[1])
-    .then(chrc => {
-        log('Reading Global Config...');
-        return chrc.readValue();
-    })
-    .then(value => {
-        log('Global Config size: ' + value.byteLength);
-        document.getElementById("systemCfg").value = value.getUint8(0);
-        document.getElementById("multitapCfg").value = value.getUint8(1);
-    })
-    .catch(error => {
-        log('Argh! ' + error);
+    return new Promise(function(resolve, reject) {
+        log('Get Global Config CHRC...');
+        brService.getCharacteristic(brUuid[1])
+        .then(chrc => {
+            log('Reading Global Config...');
+            return chrc.readValue();
+        })
+        .then(value => {
+            log('Global Config size: ' + value.byteLength);
+            document.getElementById("systemCfg").value = value.getUint8(0);
+            document.getElementById("multitapCfg").value = value.getUint8(1);
+            resolve();
+        })
+        .catch(error => {
+            reject(error);
+        });
     });
 }
 
@@ -558,7 +561,9 @@ function btConn() {
     return loadGlobalCfg();
   })
   .then(() => {
-    loadOutputCfg(0);
+    return loadOutputCfg(0);
+  })
+  .then(() => {
     loadInputCfg(0);
     document.getElementById("divBtConn").style.display = 'none';
     document.getElementById("divGlobalCfg").style.display = 'block';
