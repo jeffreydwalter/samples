@@ -511,7 +511,8 @@ function loadInputCfg(cfgId) {
 
         log('Loading Mapping Found: ' + src.length + ' nbMapping: ' + nbMapping + ' cfg: ' + value.getUint8(2));
 
-        for (var i = 0, var j = 3; i < src.length; i++) {
+        var j = 3;
+        for (var i = 0; i < src.length; i++) {
             src[i].value = value.getUint8(j++);
             dest[i].value = value.getUint8(j++);
             destId[i].value = value.getUint8(j++);
