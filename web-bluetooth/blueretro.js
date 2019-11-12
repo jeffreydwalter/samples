@@ -446,37 +446,33 @@ function initBlueRetroCfg() {
 }
 
 function loadGlobalCfg() {
-    log('Get Global Config CHRC...');
-    brService.getCharacteristic(brUuid[1])
-    .then(chrc => {
+    try {
+        log('Get Global Config CHRC...');
+        const chrc = await brService.getCharacteristic(brUuid[1]);
         log('Reading Global Config...');
-        return chrc.readValue();
-    })
-    .then(value => {
+        const value = await chrc.readValue();
         log('Global Config size: ' + value.byteLength);
         document.getElementById("systemCfg").value = value.getUint8(0);
         document.getElementById("multitapCfg").value = value.getUint8(1);
-    })
-    .catch(error => {
+    }
+    catch (error) {
         log('Argh! ' + error);
-    });
+    }
 }
 
 function loadOutputCfg(cfgId) {
-    log('Get Output ' + cfgId + ' Config CHRC...');
-    var indexUuid = 2 + Number(cfgId);
-    brService.getCharacteristic(brUuid[indexUuid])
-    .then(chrc => {
+    try {
+        log('Get Output ' + cfgId + ' Config CHRC...');
+        var indexUuid = 2 + Number(cfgId);
+        const chrc = await brService.getCharacteristic(brUuid[indexUuid]);
         log('Reading Output ' + cfgId + ' Config...');
-        return chrc.readValue();
-    })
-    .then(value => {
+        const value = await chrc.readValue();
         log('Output ' + cfgId + ' Config size: ' + value.byteLength);
         document.getElementById("outputMode").value = value.getUint8(0);
-    })
-    .catch(error => {
+    }
+    catch (error) {
         log('Argh! ' + error);
-    });
+    }
 }
 
 function loadInputCfg(cfgId) {
