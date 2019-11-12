@@ -178,8 +178,8 @@ const maxMax = 255;
 const maxThres = 100;
 const maxTurbo = 16;
 
-var maxInput = 255;
-var nbInput = 1;
+var maxMapping = 255;
+var nbMapping = 1;
 let brService = null;
 var mappingElement = null;
 
@@ -487,6 +487,41 @@ function loadInputCfg(cfgId) {
         log('Input ' + cfgId + ' Config size: ' + value.byteLength);
         document.getElementById("mainInput").value = value.getUint8(0);
         document.getElementById("subInput").value = value.getUint8(1);
+
+        var div = document.getElementById("divMapping");
+        if (value.getUint8(2) < nbMapping) {
+            for (var i = 0; i < (nbMapping - value.getUint8(2)); i++) {
+                div.removeChild(div.lastChild);
+            }
+        }
+        else if (value.getUint8(2) > nbMapping)
+            for (var i = 0; i < (value.getUint8(2) - nbMapping); i++) {
+                addInput();
+            }
+        }
+        var src = document.getElementsByClassName("src");
+        var dest = document.getElementsByClassName("dest");
+        var destId = document.getElementsByClassName("destId");
+        var max = document.getElementsByClassName("max");
+        var thres = document.getElementsByClassName("thres");
+        var dz = document.getElementsByClassName("dz");
+        var turbo = document.getElementsByClassName("turbo");
+        var scaling = document.getElementsByClassName("scaling");
+        var diag = document.getElementsByClassName("diag");
+
+        log('Loading Mapping Found: ' + src.length + ' nbMapping: ' + nbMapping + ' cfg: ' + value.getUint8(2));
+
+        for (var i = 0, var j = 3; i < src.length; i++) {
+            src[i].value = value.getUint8(j++);
+            dest[i].value = value.getUint8(j++);
+            destId[i].value = value.getUint8(j++);
+            max[i].value = value.getUint8(j++);
+            thres[i].value = value.getUint8(j++);
+            dz[i].value = value.getUint8(j++);
+            turbo[i].value = value.getUint8(j++);
+            scaling[i].value = value.getUint8(j) & 0xF;
+            diag[i].value = value.getUint8(j++) >> 4;
+        }
     })
     .catch(error => {
         log('Argh! ' + error);
@@ -535,8 +570,8 @@ function btGetCfg() {
 }
 
 function addInput() {
-    if (nbInput < maxInput){
-        nbInput++;
+    if (nbMapping < maxMapping){
+        nbMapping++;
         var div = document.getElementById("divMapping");
         var newSubDiv = mappingElement.cloneNode(true);
         var newButton = document.createElement("button");
@@ -552,7 +587,7 @@ function addInput() {
 
 function delInput() {
     this.parentNode.remove();
-    nbInput--;
+    nbMapping--;
 }
 
 function listInput() {
