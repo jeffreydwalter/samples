@@ -494,7 +494,7 @@ function loadInputCfg(cfgId) {
                 div.removeChild(div.lastChild);
             }
         }
-        else if (value.getUint8(2) > nbMapping)
+        else if (value.getUint8(2) > nbMapping) {
             for (var i = 0; i < (value.getUint8(2) - nbMapping); i++) {
                 addInput();
             }
