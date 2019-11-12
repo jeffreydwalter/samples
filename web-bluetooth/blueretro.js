@@ -462,7 +462,7 @@ function loadGlobalCfg() {
 
 function loadOutputCfg(cfgId) {
     log('Get Output ' + cfgId + ' Config CHRC...');
-    brService.getCharacteristic(brUuid[cfgId + 13])
+    brService.getCharacteristic(brUuid[cfgId + 15])
     .then(chrc => {
         log('Reading Output ' + cfgId + ' Config...');
         return chrc.readValue();
