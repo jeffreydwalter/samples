@@ -182,6 +182,7 @@ var maxMapping = 255;
 var nbMapping = 1;
 let brService = null;
 var mappingElement = null;
+let inputChrc = null;
 
 function initGlobalCfg() {
     var div = document.createElement("div");
@@ -492,6 +493,7 @@ function loadInputCfg(cfgId) {
         brService.getCharacteristic(brUuid[indexUuid])
         .then(chrc => {
             log('Reading Input ' + cfgId + ' Config...');
+            inputChrc = chrc;
             return chrc.readValue();
         })
         .then(value => {
@@ -536,7 +538,7 @@ function loadInputCfg(cfgId) {
                 scaling[i].value = value.getUint8(j) & 0xF;
                 diag[i].value = value.getUint8(j++) >> 4;
             }
-            chrc.writeValue(value);
+            inputChrc.writeValue(value);
             resolve();
         })
         .catch(error => {
