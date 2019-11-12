@@ -501,7 +501,7 @@ function loadInputCfg(cfgId) {
             for (i = 0; i < (nbMap - nbMapping); i++) {
                 addInput();
             }
-            log('added: ' + i + ' ' + ((nbMap - nbMapping));
+            log('added: ' + i + ' ' + (nbMap - nbMapping));
         }
         var src = document.getElementsByClassName("src");
         var dest = document.getElementsByClassName("dest");
