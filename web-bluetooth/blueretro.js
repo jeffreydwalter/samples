@@ -512,6 +512,7 @@ function btConn() {
     initBlueRetroCfg();
     loadGlobalCfg();
     loadOutputCfg(0);
+    loadInputCfg(0);
     document.getElementById("divBtConn").style.display = 'none';
     document.getElementById("divGlobalCfg").style.display = 'block';
     document.getElementById("divOutputCfg").style.display = 'block';
