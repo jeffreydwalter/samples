@@ -489,7 +489,7 @@ function loadInputCfg(cfgId) {
         document.getElementById("subInput").value = value.getUint8(1);
 
         var i;
-        var nbMap = value.getUint8(2);
+        var nbMap = Number(value.getUint8(2).toString);
         var div = document.getElementById("divMapping");
         if (value.getUint8(2) < nbMapping) {
             for (i = 0; i < (nbMapping - value.getUint8(2)); i++) {
