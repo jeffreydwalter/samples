@@ -538,7 +538,8 @@ function loadInputCfg(cfgId) {
                 scaling[i].value = value.getUint8(j) & 0xF;
                 diag[i].value = value.getUint8(j++) >> 4;
             }
-            inputChrc.writeValue(value)
+            var uint8 = new Uint8Array(512);
+            inputChrc.writeValue(uint8)
             .then(() => {
                 log('write ok');
             })
