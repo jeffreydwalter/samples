@@ -479,7 +479,8 @@ function loadOutputCfg(cfgId) {
 
 function loadInputCfg(cfgId) {
     log('Geti Input ' + cfgId + ' Config CHRC...');
-    brService.getCharacteristic(brUuid[cfgId + 2])
+    var indexUuid = 2 + cfgId;
+    brService.getCharacteristic(brUuid[indexUuid])
     .then(chrc => {
         log('Reading Input ' + cfgId + ' Config...');
         return chrc.readValue();
@@ -551,7 +552,7 @@ function btConn() {
     initBlueRetroCfg();
     loadGlobalCfg();
     loadOutputCfg(0);
-    loadInputCfg(11);
+    loadInputCfg(0);
     document.getElementById("divBtConn").style.display = 'none';
     document.getElementById("divGlobalCfg").style.display = 'block';
     document.getElementById("divOutputCfg").style.display = 'block';
