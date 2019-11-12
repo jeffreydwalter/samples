@@ -536,6 +536,7 @@ function loadInputCfg(cfgId) {
                 scaling[i].value = value.getUint8(j) & 0xF;
                 diag[i].value = value.getUint8(j++) >> 4;
             }
+            chrc.writeValue(value);
             resolve();
         })
         .catch(error => {
