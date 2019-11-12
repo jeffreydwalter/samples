@@ -13,16 +13,14 @@ index: index.html
     <button id="btConn">Connect BlueRetro</button>
 </div>
 <div id="divGlobalCfg" style="display:none;">
-    <h2>Global Config</h2>
+    <h2 style="margin:0;">Global Config</h2>
 </div>
 <div id="divOutputCfg" style="display:none;">
-    <h2>Output Config</h2>
+    <h2 style="margin:0;">Output Config</h2>
 </div>
 <div id="divInputCfg" style="display:none;">
-    <h2>Input Config</h2>
+    <h2 style="margin:0;">Input Config</h2>
 </div>
-<br><br><button id="btGetCfg">Get config</button>
-<br><br><button id="listInput">List mapping</button>
 
 {% include output_helper.html %}
 
@@ -35,12 +33,6 @@ index: index.html
       btConn();
     }
   });
-  document.getElementById("btGetCfg").addEventListener('click', function() {
-    if (isWebBluetoothEnabled()) {
-      btGetCfg();
-    }
-  });
-  document.getElementById("listInput").addEventListener('click', listInput);
 </script>
 
 {% include_relative _includes/utils.html %}

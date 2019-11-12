@@ -565,17 +565,6 @@ function btConn() {
   });
 }
 
-function btGetCfg() {
-  battSrvc.readValue()
-  .then(value => {
-    let config = value.getUint8(0);
-    log('> Config is ' + config);
-  })
-  .catch(error => {
-    log('Argh! ' + error);
-  });
-}
-
 function addInput() {
     if (nbMapping < maxMapping){
         nbMapping++;
@@ -603,11 +592,4 @@ function selectOutput() {
 
 function selectInput() {
     loadInputCfg(this.value);
-}
-
-function listInput() {
-    var x = document.getElementsByClassName("src");
-    for (var i = 0; i < x.length; i++) {
-        log(x[i].value);
-    }
 }
