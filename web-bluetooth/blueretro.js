@@ -463,19 +463,22 @@ function loadGlobalCfg() {
 }
 
 function loadOutputCfg(cfgId) {
-    log('Get Output ' + cfgId + ' Config CHRC...');
-    var indexUuid = 2 + Number(cfgId);
-    brService.getCharacteristic(brUuid[indexUuid])
-    .then(chrc => {
-        log('Reading Output ' + cfgId + ' Config...');
-        return chrc.readValue();
-    })
-    .then(value => {
-        log('Output ' + cfgId + ' Config size: ' + value.byteLength);
-        document.getElementById("outputMode").value = value.getUint8(0);
-    })
-    .catch(error => {
-        log('Argh! ' + error);
+    return new Promise(function(resolve, reject) {
+        log('Get Output ' + cfgId + ' Config CHRC...');
+        var indexUuid = 2 + Number(cfgId);
+        brService.getCharacteristic(brUuid[indexUuid])
+        .then(chrc => {
+            log('Reading Output ' + cfgId + ' Config...');
+            return chrc.readValue();
+        })
+        .then(value => {
+            log('Output ' + cfgId + ' Config size: ' + value.byteLength);
+            document.getElementById("outputMode").value = value.getUint8(0);
+            resolve();
+        })
+        .catch(error => {
+            reject(error);
+        });
     });
 }
 
@@ -552,7 +555,9 @@ function btConn() {
     log('Init Cfg DOM...');
     brService = service;
     initBlueRetroCfg();
-    loadGlobalCfg();
+    return loadGlobalCfg();
+  })
+  .then(() => {
     loadOutputCfg(0);
     loadInputCfg(0);
     document.getElementById("divBtConn").style.display = 'none';
