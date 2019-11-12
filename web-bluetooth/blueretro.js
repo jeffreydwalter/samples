@@ -13,6 +13,19 @@ var brUuid = [
     '56830f56-5180-fab0-314b-2fa176799a0b',
     '56830f56-5180-fab0-314b-2fa176799a0c',
     '56830f56-5180-fab0-314b-2fa176799a0d',
+    '56830f56-5180-fab0-314b-2fa176799a0e',
+    '56830f56-5180-fab0-314b-2fa176799a0f',
+    '56830f56-5180-fab0-314b-2fa176799a10',
+    '56830f56-5180-fab0-314b-2fa176799a11',
+    '56830f56-5180-fab0-314b-2fa176799a12',
+    '56830f56-5180-fab0-314b-2fa176799a13',
+    '56830f56-5180-fab0-314b-2fa176799a14',
+    '56830f56-5180-fab0-314b-2fa176799a15',
+    '56830f56-5180-fab0-314b-2fa176799a16',
+    '56830f56-5180-fab0-314b-2fa176799a18',
+    '56830f56-5180-fab0-314b-2fa176799a19',
+    '56830f56-5180-fab0-314b-2fa176799a1a',
+    '56830f56-5180-fab0-314b-2fa176799a1b',
 ];
 
 var btnList = [
@@ -447,6 +460,22 @@ function loadGlobalCfg() {
     });
 }
 
+function loadOutputCfg(cfgId) {
+    log('Get Output ' + cfgId + 'Config CHRC...');
+    brService.getCharacteristic(brUuid[cfgId + 13])
+    .then(chrc => {
+        log('Reading Output ' + cfgId + 'Config...');
+        return chrc.readValue();
+    })
+    .then(value => {
+        log('Output ' + cfgId + 'Config size: ' + value.byteLength);
+        document.getElementById("outputMode").value = value.getUint8(0);
+    })
+    .catch(error => {
+        log('Argh! ' + error);
+    });
+}
+
 function btConn() {
   log('Requesting Bluetooth Device...');
   navigator.bluetooth.requestDevice(
@@ -465,6 +494,7 @@ function btConn() {
     brService = service;
     initBlueRetroCfg();
     loadGlobalCfg();
+    loadOutputCfg(0);
     document.getElementById("divBtConn").style.display = 'none';
     document.getElementById("divGlobalCfg").style.display = 'block';
     document.getElementById("divOutputCfg").style.display = 'block';
