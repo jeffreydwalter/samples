@@ -461,15 +461,32 @@ function loadGlobalCfg() {
 }
 
 function loadOutputCfg(cfgId) {
-    log('Get Output ' + cfgId + 'Config CHRC...');
+    log('Get Output ' + cfgId + ' Config CHRC...');
     brService.getCharacteristic(brUuid[cfgId + 13])
     .then(chrc => {
-        log('Reading Output ' + cfgId + 'Config...');
+        log('Reading Output ' + cfgId + ' Config...');
         return chrc.readValue();
     })
     .then(value => {
-        log('Output ' + cfgId + 'Config size: ' + value.byteLength);
+        log('Output ' + cfgId + ' Config size: ' + value.byteLength);
         document.getElementById("outputMode").value = value.getUint8(0);
+    })
+    .catch(error => {
+        log('Argh! ' + error);
+    });
+}
+
+function loadInputCfg(cfgId) {
+    log('Geti Input ' + cfgId + ' Config CHRC...');
+    brService.getCharacteristic(brUuid[cfgId + 2])
+    .then(chrc => {
+        log('Reading Input ' + cfgId + ' Config...');
+        return chrc.readValue();
+    })
+    .then(value => {
+        log('Input ' + cfgId + ' Config size: ' + value.byteLength);
+        document.getElementById("mainInput").value = value.getUint8(0);
+        document.getElementById("subInput").value = value.getUint8(1);
     })
     .catch(error => {
         log('Argh! ' + error);
