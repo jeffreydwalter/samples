@@ -488,16 +488,19 @@ function loadInputCfg(cfgId) {
         document.getElementById("mainInput").value = value.getUint8(0);
         document.getElementById("subInput").value = value.getUint8(1);
 
+        var i;
         var div = document.getElementById("divMapping");
         if (value.getUint8(2) < nbMapping) {
-            for (var i = 0; i < (nbMapping - value.getUint8(2)); i++) {
+            for (i = 0; i < (nbMapping - value.getUint8(2)); i++) {
                 div.removeChild(div.lastChild);
             }
+            log('rem: ' + i);
         }
         else if (value.getUint8(2) > nbMapping) {
-            for (var i = 0; i < (value.getUint8(2) - nbMapping); i++) {
+            for (i = 0; i < (value.getUint8(2) - nbMapping); i++) {
                 addInput();
             }
+            log('added: ' + i);
         }
         var src = document.getElementsByClassName("src");
         var dest = document.getElementsByClassName("dest");
