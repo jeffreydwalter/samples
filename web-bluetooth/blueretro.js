@@ -264,7 +264,7 @@ function initInputSelect() {
         main.add(option);
     }
     main.id = "inputSelect";
-    main.addEventListener("click", selectInput);
+    main.addEventListener("select", selectInput);
     div.appendChild(main);
 
     var divInputCfg = document.getElementById("divInputCfg");
