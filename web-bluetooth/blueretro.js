@@ -468,7 +468,7 @@ function loadGlobalCfg() {
 function loadOutputCfg(cfgId) {
     return new Promise(function(resolve, reject) {
         log('Get Output ' + cfgId + ' Config CHRC...');
-        var indexUuid = 2 + Number(cfgId);
+        var indexUuid = 15 + Number(cfgId);
         brService.getCharacteristic(brUuid[indexUuid])
         .then(chrc => {
             log('Reading Output ' + cfgId + ' Config...');
@@ -486,93 +486,98 @@ function loadOutputCfg(cfgId) {
 }
 
 function loadInputCfg(cfgId) {
-    log('Geti Input ' + cfgId + ' Config CHRC...');
-    var indexUuid = 2 + Number(cfgId);
-    brService.getCharacteristic(brUuid[indexUuid])
-    .then(chrc => {
-        log('Reading Input ' + cfgId + ' Config...');
-        return chrc.readValue();
-    })
-    .then(value => {
-        log('Input ' + cfgId + ' Config size: ' + value.byteLength);
-        document.getElementById("mainInput").value = value.getUint8(0);
-        document.getElementById("subInput").value = value.getUint8(1);
+    return new Promise(function(resolve, reject) {
+        log('Geti Input ' + cfgId + ' Config CHRC...');
+        var indexUuid = 2 + Number(cfgId);
+        brService.getCharacteristic(brUuid[indexUuid])
+        .then(chrc => {
+            log('Reading Input ' + cfgId + ' Config...');
+            return chrc.readValue();
+        })
+        .then(value => {
+            log('Input ' + cfgId + ' Config size: ' + value.byteLength);
+            document.getElementById("mainInput").value = value.getUint8(0);
+            document.getElementById("subInput").value = value.getUint8(1);
 
-        var div = document.getElementById("divMapping");
-        if (value.getUint8(2) < nbMapping) {
-            var range = nbMapping - value.getUint8(2);
-            for (var i = 0; i < range; i++) {
-                div.removeChild(div.lastChild);
+            var div = document.getElementById("divMapping");
+            if (value.getUint8(2) < nbMapping) {
+                var range = nbMapping - value.getUint8(2);
+                for (var i = 0; i < range; i++) {
+                    div.removeChild(div.lastChild);
+                }
             }
-        }
-        else if (value.getUint8(2) > nbMapping) {
-            var range = value.getUint8(2) - nbMapping;
-            for (var i = 0; i < range; i++) {
-                addInput();
+            else if (value.getUint8(2) > nbMapping) {
+                var range = value.getUint8(2) - nbMapping;
+                for (var i = 0; i < range; i++) {
+                    addInput();
+                }
             }
-        }
-        var src = document.getElementsByClassName("src");
-        var dest = document.getElementsByClassName("dest");
-        var destId = document.getElementsByClassName("destId");
-        var max = document.getElementsByClassName("max");
-        var thres = document.getElementsByClassName("thres");
-        var dz = document.getElementsByClassName("dz");
-        var turbo = document.getElementsByClassName("turbo");
-        var scaling = document.getElementsByClassName("scaling");
-        var diag = document.getElementsByClassName("diag");
+            var src = document.getElementsByClassName("src");
+            var dest = document.getElementsByClassName("dest");
+            var destId = document.getElementsByClassName("destId");
+            var max = document.getElementsByClassName("max");
+            var thres = document.getElementsByClassName("thres");
+            var dz = document.getElementsByClassName("dz");
+            var turbo = document.getElementsByClassName("turbo");
+            var scaling = document.getElementsByClassName("scaling");
+            var diag = document.getElementsByClassName("diag");
 
-        log('Loading Mapping Found: ' + src.length + ' nbMapping: ' + nbMapping + ' cfg: ' + value.getUint8(2));
+            log('Loading Mapping Found: ' + src.length + ' nbMapping: ' + nbMapping + ' cfg: ' + value.getUint8(2));
 
-        var j = 3;
-        for (var i = 0; i < src.length; i++) {
-            src[i].value = value.getUint8(j++);
-            dest[i].value = value.getUint8(j++);
-            destId[i].value = value.getUint8(j++);
-            max[i].value = value.getUint8(j++);
-            thres[i].value = value.getUint8(j++);
-            dz[i].value = value.getUint8(j++);
-            turbo[i].value = value.getUint8(j++);
-            scaling[i].value = value.getUint8(j) & 0xF;
-            diag[i].value = value.getUint8(j++) >> 4;
-        }
-    })
-    .catch(error => {
-        log('Argh! ' + error);
+            var j = 3;
+            for (var i = 0; i < src.length; i++) {
+                src[i].value = value.getUint8(j++);
+                dest[i].value = value.getUint8(j++);
+                destId[i].value = value.getUint8(j++);
+                max[i].value = value.getUint8(j++);
+                thres[i].value = value.getUint8(j++);
+                dz[i].value = value.getUint8(j++);
+                turbo[i].value = value.getUint8(j++);
+                scaling[i].value = value.getUint8(j) & 0xF;
+                diag[i].value = value.getUint8(j++) >> 4;
+            }
+            resolve();
+        })
+        .catch(error => {
+            reject(error);
+        });
     });
 }
 
 function btConn() {
-  log('Requesting Bluetooth Device...');
-  navigator.bluetooth.requestDevice(
-    {filters: [{name: 'BlueRetro'}],
-    optionalServices: [brUuid[0]]})
-  .then(device => {
-    log('Connecting to GATT Server...');
-    return device.gatt.connect();
-  })
-  .then(server => {
-    log('Getting BlueRetro Service...');
-    return server.getPrimaryService(brUuid[0]);
-  })
-  .then(service => {
-    log('Init Cfg DOM...');
-    brService = service;
-    initBlueRetroCfg();
-    return loadGlobalCfg();
-  })
-  .then(() => {
-    return loadOutputCfg(0);
-  })
-  .then(() => {
-    loadInputCfg(0);
-    document.getElementById("divBtConn").style.display = 'none';
-    document.getElementById("divGlobalCfg").style.display = 'block';
-    document.getElementById("divOutputCfg").style.display = 'block';
-    document.getElementById("divInputCfg").style.display = 'block';
-  })
-  .catch(error => {
-    log('Argh! ' + error);
-  });
+    log('Requesting Bluetooth Device...');
+    navigator.bluetooth.requestDevice(
+        {filters: [{name: 'BlueRetro'}],
+        optionalServices: [brUuid[0]]})
+    .then(device => {
+        log('Connecting to GATT Server...');
+        return device.gatt.connect();
+    })
+    .then(server => {
+        log('Getting BlueRetro Service...');
+        return server.getPrimaryService(brUuid[0]);
+    })
+    .then(service => {
+        log('Init Cfg DOM...');
+        brService = service;
+        initBlueRetroCfg();
+        return loadGlobalCfg();
+    })
+    .then(() => {
+        return loadOutputCfg(0);
+    })
+    .then(() => {
+        return loadInputCfg(0);
+    })
+    .then(() => {
+        document.getElementById("divBtConn").style.display = 'none';
+        document.getElementById("divGlobalCfg").style.display = 'block';
+        document.getElementById("divOutputCfg").style.display = 'block';
+        document.getElementById("divInputCfg").style.display = 'block';
+    })
+    .catch(error => {
+        log('Argh! ' + error);
+    });
 }
 
 function addInput() {
