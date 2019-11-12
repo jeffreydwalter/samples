@@ -480,6 +480,7 @@ function loadOutputCfg(cfgId) {
 function loadInputCfg(cfgId) {
     log('Geti Input ' + cfgId + ' Config CHRC...');
     var indexUuid = 2 + cfgId;
+    log('index: ' + indexUuid + ' UUID: ' + brUuid[indexUuid]);
     brService.getCharacteristic(brUuid[indexUuid])
     .then(chrc => {
         log('Reading Input ' + cfgId + ' Config...');
