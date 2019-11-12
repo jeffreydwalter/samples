@@ -489,6 +489,7 @@ function loadInputCfg(cfgId) {
         document.getElementById("subInput").value = value.getUint8(1);
 
         var i;
+        var nbMap = value.getUint8(2);
         var div = document.getElementById("divMapping");
         if (value.getUint8(2) < nbMapping) {
             for (i = 0; i < (nbMapping - value.getUint8(2)); i++) {
@@ -497,10 +498,10 @@ function loadInputCfg(cfgId) {
             log('rem: ' + i);
         }
         else if (value.getUint8(2) > nbMapping) {
-            for (i = 0; i < value.getUint8(2); i++) {
+            for (i = 0; i < (nbMap - nbMapping); i++) {
                 addInput();
             }
-            log('added: ' + i + ' ' + (value.getUint8(2)));
+            log('added: ' + i + ' ' + ((nbMap - nbMapping));
         }
         var src = document.getElementsByClassName("src");
         var dest = document.getElementsByClassName("dest");
