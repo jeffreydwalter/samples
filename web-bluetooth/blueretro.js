@@ -497,10 +497,10 @@ function loadInputCfg(cfgId) {
             log('rem: ' + i);
         }
         else if (value.getUint8(2) > nbMapping) {
-            for (i = 0; i < (value.getUint8(2) - nbMapping); i++) {
+            for (i = 0; i < value.getUint8(2); i++) {
                 addInput();
             }
-            log('added: ' + i + ' ' + (Number(value.getUint8(2)) - nbMapping));
+            log('added: ' + i + ' ' + (value.getUint8(2)));
         }
         var src = document.getElementsByClassName("src");
         var dest = document.getElementsByClassName("dest");
