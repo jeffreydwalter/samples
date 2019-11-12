@@ -264,6 +264,7 @@ function initInputSelect() {
         main.add(option);
     }
     main.id = "inputSelect";
+    main.addEventListener("click", selectInput);
     div.appendChild(main);
 
     var divInputCfg = document.getElementById("divInputCfg");
@@ -591,6 +592,10 @@ function addInput() {
 function delInput() {
     this.parentNode.remove();
     nbMapping--;
+}
+
+function selectInput() {
+    loadInputCfg(this.value);
 }
 
 function listInput() {
