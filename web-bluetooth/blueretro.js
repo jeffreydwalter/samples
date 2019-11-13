@@ -463,26 +463,55 @@ function loadOutputCfg(cfgId) {
     });
 }
 
-function loadInputCfg(cfgId) {
+function readInputCfg(cfgId) {
     return new Promise(function(resolve, reject) {
         var cfg = new Uint8Array(2051);
-        log('Get Input ' + cfgId + ' Config CHRC...');
+        var lastReadLen = 0;
+        let ctrl_chrc = null;
+        let data_chrc = null;
+        log('Get Input Ctrl CHRC...');
         brService.getCharacteristic(brUuid[3])
         .then(chrc => {
-            var inputCtrl = new Uint16Array(2);
-            inputCtrl[0] = 1;
-            inputCtrl[1] = 512;
-            return chrc.writeValue(inputCtrl);
-        })
-        .then(_ => {
-            log('Write test done');
-            return brService.getCharacteristic(brUuid[4]);
+            ctrl_chrc = chrc;
+            return brService.getCharacteristic(brUuid[2])
         })
         .then(chrc => {
-            log('Reading Input ' + cfgId + ' Config...');
-            inputChrc = chrc;
-            return chrc.readValue();
+            data_chrc = chrc;
+            return new Promise(function(resolve, reject) {
+                var inputCtrl = new Uint16Array(2);
+                inputCtrl[0] = Number(cfgId);
+                inputCtrl[1] = 0;
+                do {
+                    ctrl_chrc.writeValue(inputCtrl)
+                    .then(_ => {
+                        return data_chrc.readValue();
+                    })
+                    .then(value => {
+                        lastReadLen = value.byteLength;
+                        cfg.set(value, cfg.lenght);
+                    })
+                    .catch(error => {
+                        reject(error);
+                    });
+                    inputCtrl[1] += 512;
+                while (lastReadLen = 512);
+                resolve(cfg);
+            });
         })
+        .then(value => {
+            log('Input ' + cfgId + ' Config size: ' + cfg.byteLength);
+            resolve(cfg);
+        })
+        .catch(error => {
+            reject(error);
+        });
+    });
+}
+
+function loadInputCfg(cfgId) {
+    return new Promise(function(resolve, reject) {
+        log('Get Input ' + cfgId + ' Config CHRC...');
+        readInputCfg(cfgId)
         .then(value => {
             log('Input ' + cfgId + ' Config size: ' + value.byteLength);
             document.getElementById("mainInput").value = value.getUint8(0);
