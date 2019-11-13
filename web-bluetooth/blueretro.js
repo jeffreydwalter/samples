@@ -616,9 +616,55 @@ function loadInputCfg(cfgId) {
 }
 
 function saveGlobal() {
+    var data = new Uint8Array(2);
+    data[0] = document.getElementById("systemCfg").value;
+    data[1] = document.getElementById("multitapCfg").value;
+    return new Promise(function(resolve, reject) {
+        log('Get Global Config CHRC...');
+        brService.getCharacteristic(brUuid[1])
+        .then(chrc => {
+            log('Writing Global Config...');
+            return chrc.writeValue(data);
+        })
+        .then(_ => {
+            log('Global Config saved');
+            resolve();
+        })
+        .catch(error => {
+            reject(error);
+        });
+    });
 }
 
 function saveOutput() {
+    var data = new Uint8Array(1);
+    data[0] = document.getElementById("outputMode").value;
+    cfgId = document.getElementById("outputSelect").value;
+    return new Promise(function(resolve, reject) {
+        log('Get Output ' + cfgId + ' CTRL CHRC...');
+        brService.getCharacteristic(brUuid[2])
+        .then(chrc => {
+            log('Set Output ' + cfgId + ' on CTRL chrc...');
+            var outputCtrl = new Uint16Array(1);
+            outputCtrl[0] = Number(cfgId);
+            return chrc.writeValue(outputCtrl);
+        })
+        .then(_ => {
+            log('Get Output ' + cfgId + ' DATA CHRC...');
+            return brService.getCharacteristic(brUuid[3]);
+        })
+        .then(chrc => {
+            log('Writing Output ' + cfgId + ' Config...');
+            return chrc.writeValue(data);
+        })
+        .then(_ => {
+            log('Output ' + cfgId + ' Config saved');
+            resolve();
+        })
+        .catch(error => {
+            reject(error);
+        });
+    });
 }
 
 function saveInput() {
