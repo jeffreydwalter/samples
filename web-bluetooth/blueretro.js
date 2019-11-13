@@ -668,6 +668,34 @@ function saveOutput() {
 }
 
 function saveInput() {
+    var data = new Uint8Array(512);
+    cfgId = document.getElementById("inputSelect").value;
+    return new Promise(function(resolve, reject) {
+        log('Get Input ' + cfgId + ' CTRL CHRC...');
+        brService.getCharacteristic(brUuid[4])
+        .then(chrc => {
+            log('Set Input ' + cfgId + ' on CTRL chrc...');
+            var inputCtrl = new Uint16Array(2);
+            inputCtrl[0] = Number(cfgId);
+            inputCtrl[1] = 0;
+            return chrc.writeValue(inputCtrl);
+        })
+        .then(_ => {
+            log('Get Input ' + cfgId + ' DATA CHRC...');
+            return brService.getCharacteristic(brUuid[5]);
+        })
+        .then(chrc => {
+            log('Writing Input ' + cfgId + ' Config...');
+            return chrc.writeValue(data);
+        })
+        .then(_ => {
+            log('Input ' + cfgId + ' Config saved');
+            resolve();
+        })
+        .catch(error => {
+            reject(error);
+        });
+    });
 }
 
 function btConn() {
