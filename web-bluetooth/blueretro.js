@@ -199,6 +199,7 @@ function initGlobalCfg() {
 
     var btn = document.createElement("button");
     btn.id = "globalSave";
+    btn.innerText = 'Save';
     btn.addEventListener("click", saveGlobal);
     div.appendChild(btn);
     div.setAttribute("style", "margin-top:1em;");
@@ -246,6 +247,7 @@ function initOutputMode() {
 
     var btn = document.createElement("button");
     btn.id = "outputSave";
+    btn.innerText = 'Save';
     btn.addEventListener("click", saveOutput);
     div.appendChild(btn);
     div.setAttribute("style", "margin-top:1em;");
@@ -430,6 +432,7 @@ function initOutputMapping() {
 
     var btn = document.createElement("button");
     btn.id = "inputSave";
+    btn.innerText = 'Save';
     btn.addEventListener("click", saveInput);
     divSave.appendChild(btn);
     divSave.setAttribute("style", "margin-top:1em;");
