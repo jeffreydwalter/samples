@@ -488,9 +488,8 @@ function writeReadRecursive(cfg, inputCtrl, ctrl_chrc, data_chrc) {
     });
 }
 
-function readInputCfg(cfgId) {
+function readInputCfg(cfgId, cfg) {
     return new Promise(function(resolve, reject) {
-        var cfg = new Uint8Array(2051);
         let ctrl_chrc = null;
         let data_chrc = null;
         brService.getCharacteristic(brUuid[3])
@@ -517,8 +516,9 @@ function readInputCfg(cfgId) {
 
 function loadInputCfg(cfgId) {
     return new Promise(function(resolve, reject) {
+        var cfg = new Uint8Array(2051);
         log('Get Input ' + cfgId + ' Config CHRC...');
-        readInputCfg(cfgId)
+        readInputCfg(cfgId, cfg)
         .then(value => {
             log('Input ' + cfgId + ' Config size: ' + value.byteLength);
             document.getElementById("mainInput").value = value[0];
