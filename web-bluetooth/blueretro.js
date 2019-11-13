@@ -4,28 +4,6 @@ var brUuid = [
     '56830f56-5180-fab0-314b-2fa176799a02',
     '56830f56-5180-fab0-314b-2fa176799a03',
     '56830f56-5180-fab0-314b-2fa176799a04',
-    '56830f56-5180-fab0-314b-2fa176799a05',
-    '56830f56-5180-fab0-314b-2fa176799a06',
-    '56830f56-5180-fab0-314b-2fa176799a07',
-    '56830f56-5180-fab0-314b-2fa176799a08',
-    '56830f56-5180-fab0-314b-2fa176799a09',
-    '56830f56-5180-fab0-314b-2fa176799a0a',
-    '56830f56-5180-fab0-314b-2fa176799a0b',
-    '56830f56-5180-fab0-314b-2fa176799a0c',
-    '56830f56-5180-fab0-314b-2fa176799a0d',
-    '56830f56-5180-fab0-314b-2fa176799a0e',
-    '56830f56-5180-fab0-314b-2fa176799a0f',
-    '56830f56-5180-fab0-314b-2fa176799a10',
-    '56830f56-5180-fab0-314b-2fa176799a11',
-    '56830f56-5180-fab0-314b-2fa176799a12',
-    '56830f56-5180-fab0-314b-2fa176799a13',
-    '56830f56-5180-fab0-314b-2fa176799a14',
-    '56830f56-5180-fab0-314b-2fa176799a15',
-    '56830f56-5180-fab0-314b-2fa176799a16',
-    '56830f56-5180-fab0-314b-2fa176799a18',
-    '56830f56-5180-fab0-314b-2fa176799a19',
-    '56830f56-5180-fab0-314b-2fa176799a1a',
-    '56830f56-5180-fab0-314b-2fa176799a1b',
 ];
 
 var btnList = [
@@ -469,15 +447,14 @@ function loadGlobalCfg() {
 function loadOutputCfg(cfgId) {
     return new Promise(function(resolve, reject) {
         log('Get Output ' + cfgId + ' Config CHRC...');
-        var indexUuid = 15 + Number(cfgId);
-        brService.getCharacteristic(brUuid[indexUuid])
+        brService.getCharacteristic(brUuid[2])
         .then(chrc => {
             log('Reading Output ' + cfgId + ' Config...');
             return chrc.readValue();
         })
         .then(value => {
             log('Output ' + cfgId + ' Config size: ' + value.byteLength);
-            document.getElementById("outputMode").value = value.getUint8(0);
+            document.getElementById("outputMode").value = value.getUint8(Number(cfgId));
             resolve();
         })
         .catch(error => {
@@ -489,8 +466,7 @@ function loadOutputCfg(cfgId) {
 function loadInputCfg(cfgId) {
     return new Promise(function(resolve, reject) {
         log('Geti Input ' + cfgId + ' Config CHRC...');
-        var indexUuid = 2 + Number(cfgId);
-        brService.getCharacteristic(brUuid[indexUuid])
+        brService.getCharacteristic(brUuid[4])
         .then(chrc => {
             log('Reading Input ' + cfgId + ' Config...');
             inputChrc = chrc;
