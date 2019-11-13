@@ -463,10 +463,34 @@ function loadOutputCfg(cfgId) {
     });
 }
 
+function writeReadRecursive(cfg, inputCtrl, ctrl_chrc, data_chrc) {
+    return new Promise(function(resolve, reject) {
+        log('Set Input Ctrl CHRC... ' + inputCtrl[1]);
+        ctrl_chrc.writeValue(inputCtrl)
+        .then(_ => {
+            log('Reading Input Data CHRC...');
+            return data_chrc.readValue();
+        })
+        .then(value => {
+            log('Got Input Data ');
+            cfg.set(value, cfg.lenght);
+            if (value.byteLength == 512) {
+                inputCtrl[1] += Number(512);
+                resolve(writeReadRecursive(cfg, inputCtrl, ctrl_chrc, data_chrc));
+            }
+            else {
+                resolve(cfg);
+            }
+        })
+        .catch(error => {
+            reject(error);
+        });
+    });
+}
+
 function readInputCfg(cfgId) {
     return new Promise(function(resolve, reject) {
         var cfg = new Uint8Array(2051);
-        var lastReadLen = 0;
         let ctrl_chrc = null;
         let data_chrc = null;
         log('Get Input Ctrl CHRC...');
@@ -477,31 +501,12 @@ function readInputCfg(cfgId) {
             return brService.getCharacteristic(brUuid[3])
         })
         .then(chrc => {
+            var inputCtrl = new Uint16Array(2);
+            inputCtrl[0] = Number(cfgId);
+            inputCtrl[1] = 0;
             log('Got Input Data CHRC...');
             data_chrc = chrc;
-            return new Promise(function(resolve, reject) {
-                var inputCtrl = new Uint16Array(2);
-                inputCtrl[0] = Number(cfgId);
-                inputCtrl[1] = 0;
-                do {
-                    log('Set Input Ctrl CHRC... ' + inputCtrl[1]);
-                    ctrl_chrc.writeValue(inputCtrl)
-                    .then(_ => {
-                        log('Reading Input Data CHRC...');
-                        return data_chrc.readValue();
-                    })
-                    .then(value => {
-                        log('Got Input Data ');
-                        lastReadLen = value.byteLength;
-                        cfg.set(value, cfg.lenght);
-                    })
-                    .catch(error => {
-                        reject(error);
-                    });
-                    inputCtrl[1] += 512;
-                } while (lastReadLen = 512);
-                resolve(cfg);
-            });
+            return writeReadRecursive(cfg, inputCtrl, ctrl_chrc, data_chrc);
         })
         .then(value => {
             log('Input ' + cfgId + ' Config size: ' + cfg.byteLength);
