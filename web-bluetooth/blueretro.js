@@ -472,7 +472,7 @@ function loadInputCfg(cfgId) {
             var inputCtrl = new Uint16Array(2);
             inputCtrl[0] = 0;
             inputCtrl[1] = 0;
-            return chrc.writeValue();
+            return chrc.writeValue(inputCtrl);
         })
         .then(_ => {
             log('Write test done');
