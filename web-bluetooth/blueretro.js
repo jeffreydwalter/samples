@@ -194,6 +194,16 @@ function initGlobalCfg() {
     div.appendChild(sel);
 
     divGlobalCfg.appendChild(div);
+
+    div = document.createElement("div");
+
+    var btn = document.createElement("button");
+    btn.id = "globalSave";
+    btn.addEventListener("click", saveGlobal);
+    div.appendChild(btn);
+    div.setAttribute("style", "margin-top:1em;");
+
+    divGlobalCfg.appendChild(div);
 }
 
 function initOutputSelect() {
@@ -230,6 +240,16 @@ function initOutputMode() {
     div.appendChild(main);
 
     var divOutputCfg = document.getElementById("divOutputCfg");
+    divOutputCfg.appendChild(div);
+
+    div = document.createElement("div");
+
+    var btn = document.createElement("button");
+    btn.id = "outputSave";
+    btn.addEventListener("click", saveOutput);
+    div.appendChild(btn);
+    div.setAttribute("style", "margin-top:1em;");
+
     divOutputCfg.appendChild(div);
 }
 
@@ -405,6 +425,15 @@ function initOutputMapping() {
     addButton.innerText = '+';
     addButton.addEventListener("click", addInput);
 
+    /* Save */
+    divSave = document.createElement("div");
+
+    var btn = document.createElement("button");
+    btn.id = "inputSave";
+    btn.addEventListener("click", saveInput);
+    divSave.appendChild(btn);
+    divSave.setAttribute("style", "margin-top:1em;");
+
     /* Append first cfg */
     divMappingGrp = document.createElement("div");
     divMapping = document.createElement("div");
@@ -413,6 +442,7 @@ function initOutputMapping() {
     var divInputCfg = document.getElementById("divInputCfg");
     divMappingGrp.appendChild(divMapping);
     divMappingGrp.appendChild(addButton);
+    divMappingGrp.appendChild(divSave);
     divInputCfg.appendChild(divMappingGrp);
 }
 
@@ -580,6 +610,15 @@ function loadInputCfg(cfgId) {
             reject(error);
         });
     });
+}
+
+function saveGlobal() {
+}
+
+function saveOutput() {
+}
+
+function saveInput() {
 }
 
 function btConn() {
