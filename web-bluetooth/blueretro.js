@@ -493,10 +493,8 @@ function readInputCfg(cfgId) {
         var cfg = new Uint8Array(2051);
         let ctrl_chrc = null;
         let data_chrc = null;
-        log('Get Input Ctrl CHRC...');
         brService.getCharacteristic(brUuid[3])
         .then(chrc => {
-            log('Got Input Ctrl CHRC...');
             ctrl_chrc = chrc;
             return brService.getCharacteristic(brUuid[4])
         })
@@ -504,7 +502,6 @@ function readInputCfg(cfgId) {
             var inputCtrl = new Uint16Array(2);
             inputCtrl[0] = Number(cfgId);
             inputCtrl[1] = 0;
-            log('Got Input Data CHRC...');
             data_chrc = chrc;
             return writeReadRecursive(cfg, inputCtrl, ctrl_chrc, data_chrc);
         })
@@ -524,18 +521,18 @@ function loadInputCfg(cfgId) {
         readInputCfg(cfgId)
         .then(value => {
             log('Input ' + cfgId + ' Config size: ' + value.byteLength);
-            document.getElementById("mainInput").value = value.getUint8(0);
-            document.getElementById("subInput").value = value.getUint8(1);
+            document.getElementById("mainInput").value = value[0];
+            document.getElementById("subInput").value = value[1];
 
             var div = document.getElementById("divMapping");
-            if (value.getUint8(2) < nbMapping) {
-                var range = nbMapping - value.getUint8(2);
+            if (value[2] < nbMapping) {
+                var range = nbMapping - value[2];
                 for (var i = 0; i < range; i++) {
                     div.removeChild(div.lastChild);
                 }
             }
-            else if (value.getUint8(2) > nbMapping) {
-                var range = value.getUint8(2) - nbMapping;
+            else if (value[2] > nbMapping) {
+                var range = value[2] - nbMapping;
                 for (var i = 0; i < range; i++) {
                     addInput();
                 }
@@ -550,19 +547,19 @@ function loadInputCfg(cfgId) {
             var scaling = document.getElementsByClassName("scaling");
             var diag = document.getElementsByClassName("diag");
 
-            log('Loading Mapping Found: ' + src.length + ' nbMapping: ' + nbMapping + ' cfg: ' + value.getUint8(2));
+            log('Loading Mapping Found: ' + src.length + ' nbMapping: ' + nbMapping + ' cfg: ' + value[2]);
 
             var j = 3;
             for (var i = 0; i < src.length; i++) {
-                src[i].value = value.getUint8(j++);
-                dest[i].value = value.getUint8(j++);
-                destId[i].value = value.getUint8(j++);
-                max[i].value = value.getUint8(j++);
-                thres[i].value = value.getUint8(j++);
-                dz[i].value = value.getUint8(j++);
-                turbo[i].value = value.getUint8(j++);
-                scaling[i].value = value.getUint8(j) & 0xF;
-                diag[i].value = value.getUint8(j++) >> 4;
+                src[i].value = value[j++];
+                dest[i].value = value[j++];
+                destId[i].value = value[j++];
+                max[i].value = value[j++];
+                thres[i].value = value[j++];
+                dz[i].value = value[j++];
+                turbo[i].value = value[j++];
+                scaling[i].value = value[j] & 0xF;
+                diag[i].value = value[j++] >> 4;
             }
             resolve();
         })
