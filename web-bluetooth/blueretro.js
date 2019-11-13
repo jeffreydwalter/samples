@@ -4,6 +4,7 @@ var brUuid = [
     '56830f56-5180-fab0-314b-2fa176799a02',
     '56830f56-5180-fab0-314b-2fa176799a03',
     '56830f56-5180-fab0-314b-2fa176799a04',
+    '56830f56-5180-fab0-314b-2fa176799a05',
 ];
 
 var btnList = [
@@ -446,15 +447,25 @@ function loadGlobalCfg() {
 
 function loadOutputCfg(cfgId) {
     return new Promise(function(resolve, reject) {
-        log('Get Output ' + cfgId + ' Config CHRC...');
+        log('Get Output ' + cfgId + ' CTRL CHRC...');
         brService.getCharacteristic(brUuid[2])
+        .then(chrc => {
+            log('Set Output ' + cfgId + ' on CTRL chrc...');
+            var outputCtrl = new Uint16Array(1);
+            outputCtrl[0] = Number(cfgId);
+            return chrc.writeValue(outputCtrl);
+        })
+        .then(_ => {
+            log('Get Output ' + cfgId + ' DATA CHRC...');
+            return brService.getCharacteristic(brUuid[3]);
+        })
         .then(chrc => {
             log('Reading Output ' + cfgId + ' Config...');
             return chrc.readValue();
         })
         .then(value => {
             log('Output ' + cfgId + ' Config size: ' + value.byteLength);
-            document.getElementById("outputMode").value = value.getUint8(Number(cfgId));
+            document.getElementById("outputMode").value = value.getUint8(0);
             resolve();
         })
         .catch(error => {
@@ -494,10 +505,10 @@ function readInputCfg(cfgId, cfg) {
     return new Promise(function(resolve, reject) {
         let ctrl_chrc = null;
         let data_chrc = null;
-        brService.getCharacteristic(brUuid[3])
+        brService.getCharacteristic(brUuid[4])
         .then(chrc => {
             ctrl_chrc = chrc;
-            return brService.getCharacteristic(brUuid[4])
+            return brService.getCharacteristic(brUuid[5])
         })
         .then(chrc => {
             var inputCtrl = new Uint16Array(2);
