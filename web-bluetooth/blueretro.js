@@ -470,8 +470,8 @@ function loadInputCfg(cfgId) {
         brService.getCharacteristic(brUuid[3])
         .then(chrc => {
             var inputCtrl = new Uint16Array(2);
-            inputCtrl[0] = 0;
-            inputCtrl[1] = 0;
+            inputCtrl[0] = 1;
+            inputCtrl[1] = 512;
             return chrc.writeValue(inputCtrl);
         })
         .then(_ => {
