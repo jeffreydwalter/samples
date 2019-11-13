@@ -470,23 +470,28 @@ function readInputCfg(cfgId) {
         let ctrl_chrc = null;
         let data_chrc = null;
         log('Get Input Ctrl CHRC...');
-        brService.getCharacteristic(brUuid[3])
+        brService.getCharacteristic(brUuid[2])
         .then(chrc => {
+            log('Got Input Ctrl CHRC...');
             ctrl_chrc = chrc;
-            return brService.getCharacteristic(brUuid[2])
+            return brService.getCharacteristic(brUuid[3])
         })
         .then(chrc => {
+            log('Got Input Data CHRC...');
             data_chrc = chrc;
             return new Promise(function(resolve, reject) {
                 var inputCtrl = new Uint16Array(2);
                 inputCtrl[0] = Number(cfgId);
                 inputCtrl[1] = 0;
                 do {
+                    log('Set Input Ctrl CHRC... ' + inputCtrl[1]);
                     ctrl_chrc.writeValue(inputCtrl)
                     .then(_ => {
+                        log('Reading Input Data CHRC...');
                         return data_chrc.readValue();
                     })
                     .then(value => {
+                        log('Got Input Data ');
                         lastReadLen = value.byteLength;
                         cfg.set(value, cfg.lenght);
                     })
