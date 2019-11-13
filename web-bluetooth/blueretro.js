@@ -494,7 +494,7 @@ function readInputCfg(cfgId) {
                         reject(error);
                     });
                     inputCtrl[1] += 512;
-                while (lastReadLen = 512);
+                } while (lastReadLen = 512);
                 resolve(cfg);
             });
         })
