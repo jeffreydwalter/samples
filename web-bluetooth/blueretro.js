@@ -494,11 +494,11 @@ function readInputCfg(cfgId) {
         let ctrl_chrc = null;
         let data_chrc = null;
         log('Get Input Ctrl CHRC...');
-        brService.getCharacteristic(brUuid[2])
+        brService.getCharacteristic(brUuid[3])
         .then(chrc => {
             log('Got Input Ctrl CHRC...');
             ctrl_chrc = chrc;
-            return brService.getCharacteristic(brUuid[3])
+            return brService.getCharacteristic(brUuid[4])
         })
         .then(chrc => {
             var inputCtrl = new Uint16Array(2);
