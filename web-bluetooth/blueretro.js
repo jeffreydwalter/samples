@@ -472,7 +472,7 @@ function writeReadRecursive(cfg, inputCtrl, ctrl_chrc, data_chrc) {
             return data_chrc.readValue();
         })
         .then(value => {
-            log('Got Input Data ');
+            log('Got Input Data ' + value.byteLength);
             cfg.set(value, cfg.lenght);
             if (value.byteLength == 512) {
                 inputCtrl[1] += Number(512);
