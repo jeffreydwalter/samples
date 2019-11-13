@@ -465,8 +465,19 @@ function loadOutputCfg(cfgId) {
 
 function loadInputCfg(cfgId) {
     return new Promise(function(resolve, reject) {
-        log('Geti Input ' + cfgId + ' Config CHRC...');
-        brService.getCharacteristic(brUuid[4])
+        var cfg = new Uint8Array(2051);
+        log('Get Input ' + cfgId + ' Config CHRC...');
+        brService.getCharacteristic(brUuid[3])
+        .then(chrc => {
+            var inputCtrl = new Uint16Array(2);
+            inputCtrl[0] = 0;
+            inputCtrl[1] = 0;
+            return chrc.writeValue();
+        })
+        .then(_ => {
+            log('Write test done');
+            return brService.getCharacteristic(brUuid[4]);
+        })
         .then(chrc => {
             log('Reading Input ' + cfgId + ' Config...');
             inputChrc = chrc;
@@ -514,14 +525,6 @@ function loadInputCfg(cfgId) {
                 scaling[i].value = value.getUint8(j) & 0xF;
                 diag[i].value = value.getUint8(j++) >> 4;
             }
-            var uint8 = new Uint8Array(512);
-            inputChrc.writeValue(uint8)
-            .then(() => {
-                log('write ok');
-            })
-            .catch(error => {
-                log('Argh! ' + error);
-            });
             resolve();
         })
         .catch(error => {
