@@ -742,14 +742,14 @@ function saveInput() {
     cfg[j++] = nbMapping;
 
     for (var i = 0; i < nbMapping; i++) {
-        value[j++] = src[i].value;
-        value[j++] = dest[i].value;
-        value[j++] = destId[i].value;
-        value[j++] = max[i].value;
-        value[j++] = thres[i].value;
-        value[j++] = dz[i].value;
-        value[j++] = turbo[i].value;
-        value[j++] = Number(scaling[i].value) | (Number(diag[i].value) << 4);
+        cfg[j++] = src[i].value;
+        cfg[j++] = dest[i].value;
+        cfg[j++] = destId[i].value;
+        cfg[j++] = max[i].value;
+        cfg[j++] = thres[i].value;
+        cfg[j++] = dz[i].value;
+        cfg[j++] = turbo[i].value;
+        cfg[j++] = Number(scaling[i].value) | (Number(diag[i].value) << 4);
     }
 
     return new Promise(function(resolve, reject) {
