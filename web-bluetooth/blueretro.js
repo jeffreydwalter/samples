@@ -667,27 +667,66 @@ function saveOutput() {
     });
 }
 
-function saveInput() {
-    var data = new Uint8Array(512);
-    cfgId = document.getElementById("inputSelect").value;
+function writeWriteRecursive(cfg, inputCtrl, ctrl_chrc, data_chrc) {
     return new Promise(function(resolve, reject) {
-        log('Get Input ' + cfgId + ' CTRL CHRC...');
+        log('Set Input Ctrl CHRC... ' + inputCtrl[1]);
+        ctrl_chrc.writeValue(inputCtrl)
+        .then(_ => {
+            log('Writing Input Data CHRC...');
+            var tmpViewSize = cfg.byteLength - inputCtrl[1];
+            if (tmpViewSize > 512) {
+                tmpViewSize = 512;
+            }
+            var tmpView = new DataView(cfg.buffer, inputCtrl[1], tmpViewSize);
+            return data_chrc.writeValue(tmpView);
+        })
+        .then(_ => {
+            log('Input Data Written');
+            inputCtrl[1] += Number(512);
+            if (inputCtrl[1] < cfg.byteLength) {
+                resolve(writeWriteRecursive(cfg, inputCtrl, ctrl_chrc, data_chrc));
+            }
+            else {
+                resolve();
+            }
+        })
+        .catch(error => {
+            reject(error);
+        });
+    });
+}
+
+function writeInputCfg(cfgId, cfg) {
+    return new Promise(function(resolve, reject) {
+        let ctrl_chrc = null;
+        let data_chrc = null;
         brService.getCharacteristic(brUuid[4])
         .then(chrc => {
-            log('Set Input ' + cfgId + ' on CTRL chrc...');
+            ctrl_chrc = chrc;
+            return brService.getCharacteristic(brUuid[5])
+        })
+        .then(chrc => {
             var inputCtrl = new Uint16Array(2);
             inputCtrl[0] = Number(cfgId);
             inputCtrl[1] = 0;
-            return chrc.writeValue(inputCtrl);
+            data_chrc = chrc;
+            return writeWriteRecursive(cfg, inputCtrl, ctrl_chrc, data_chrc);
         })
         .then(_ => {
-            log('Get Input ' + cfgId + ' DATA CHRC...');
-            return brService.getCharacteristic(brUuid[5]);
+            resolve(cfg);
         })
-        .then(chrc => {
-            log('Writing Input ' + cfgId + ' Config...');
-            return chrc.writeValue(data);
-        })
+        .catch(error => {
+            reject(error);
+        });
+    });
+}
+
+function saveInput() {
+    var cfgSize = nbMapping*8 + 3;
+    var cfg = new Uint8Array(cfgSize);
+    cfgId = document.getElementById("inputSelect").value;
+    return new Promise(function(resolve, reject) {
+        writeInputCfg(cfgId, cfg)
         .then(_ => {
             log('Input ' + cfgId + ' Config saved');
             resolve();
