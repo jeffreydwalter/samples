@@ -583,6 +583,7 @@ function loadInputCfg(cfgId) {
                     addInput();
                 }
             }
+            nbMapping = value[2];
             var src = document.getElementsByClassName("src");
             var dest = document.getElementsByClassName("dest");
             var destId = document.getElementsByClassName("destId");
