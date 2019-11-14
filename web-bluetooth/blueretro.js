@@ -725,6 +725,33 @@ function saveInput() {
     var cfgSize = nbMapping*8 + 3;
     var cfg = new Uint8Array(cfgSize);
     cfgId = document.getElementById("inputSelect").value;
+
+    var src = document.getElementsByClassName("src");
+    var dest = document.getElementsByClassName("dest");
+    var destId = document.getElementsByClassName("destId");
+    var max = document.getElementsByClassName("max");
+    var thres = document.getElementsByClassName("thres");
+    var dz = document.getElementsByClassName("dz");
+    var turbo = document.getElementsByClassName("turbo");
+    var scaling = document.getElementsByClassName("scaling");
+    var diag = document.getElementsByClassName("diag");
+
+    var j = 0;
+    cfg[j++] = document.getElementById("mainInput").value;
+    cfg[j++] = document.getElementById("subInput").value;
+    cfg[j++] = nbMapping;
+
+    for (var i = 0; i < nbMapping; i++) {
+        value[j++] = src[i].value;
+        value[j++] = dest[i].value;
+        value[j++] = destId[i].value;
+        value[j++] = max[i].value;
+        value[j++] = thres[i].value;
+        value[j++] = dz[i].value;
+        value[j++] = turbo[i].value;
+        value[j++] = Number(scaling[i].value) | (Number(diag[i].value) << 4);
+    }
+
     return new Promise(function(resolve, reject) {
         writeInputCfg(cfgId, cfg)
         .then(_ => {
