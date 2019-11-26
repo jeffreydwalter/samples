@@ -820,16 +820,11 @@ function btDisconn() {
     }
     log('Disconnecting from Bluetooth Device...');
     if (bluetoothDevice.gatt.connected) {
-        bluetoothDevice.gatt.disconnect()
-        .then(() => {
-            onDisconnected();
-        })
-        .catch(error => {
-            log('Argh! ' + error);
-        });
+        bluetoothDevice.gatt.disconnect();
     } else {
         log('> Bluetooth Device is already disconnected');
     }
+    onDisconnected();
 }
 
 function addInput() {
