@@ -157,6 +157,7 @@ const maxMax = 255;
 const maxThres = 100;
 const maxTurbo = 16;
 
+var bluetoothDevice;
 var maxMapping = 255;
 var nbMapping = 1;
 let brService = null;
@@ -765,6 +766,15 @@ function saveInput() {
     });
 }
 
+function onDisconnected() {
+    log('> Bluetooth Device disconnected');
+    document.getElementById("divBtConn").style.display = 'block';
+    document.getElementById("divBtDisconn").style.display = 'none';
+    document.getElementById("divGlobalCfg").style.display = 'none';
+    document.getElementById("divOutputCfg").style.display = 'none';
+    document.getElementById("divInputCfg").style.display = 'none';
+}
+
 function btConn() {
     log('Requesting Bluetooth Device...');
     navigator.bluetooth.requestDevice(
@@ -772,7 +782,9 @@ function btConn() {
         optionalServices: [brUuid[0]]})
     .then(device => {
         log('Connecting to GATT Server...');
-        return device.gatt.connect();
+        bluetoothDevice = device;
+        bluetoothDevice.addEventListener('gattserverdisconnected', onDisconnected);
+        return bluetoothDevice.gatt.connect();
     })
     .then(server => {
         log('Getting BlueRetro Service...');
@@ -792,6 +804,7 @@ function btConn() {
     })
     .then(() => {
         document.getElementById("divBtConn").style.display = 'none';
+        document.getElementById("divBtDisconn").style.display = 'block';
         document.getElementById("divGlobalCfg").style.display = 'block';
         document.getElementById("divOutputCfg").style.display = 'block';
         document.getElementById("divInputCfg").style.display = 'block';
@@ -799,6 +812,24 @@ function btConn() {
     .catch(error => {
         log('Argh! ' + error);
     });
+}
+
+function btDisconn() {
+    if (!bluetoothDevice) {
+        return;
+    }
+    log('Disconnecting from Bluetooth Device...');
+    if (bluetoothDevice.gatt.connected) {
+        bluetoothDevice.gatt.disconnect()
+        .then(() => {
+            onDisconnected();
+        })
+        .catch(error => {
+            log('Argh! ' + error);
+        });
+    } else {
+        log('> Bluetooth Device is already disconnected');
+    }
 }
 
 function addInput() {

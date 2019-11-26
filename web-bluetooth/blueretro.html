@@ -12,6 +12,9 @@ index: index.html
 <div id="divBtConn">
     <button id="btConn">Connect BlueRetro</button>
 </div>
+<div id="divBtDisconn" style="display:none;">
+    <button id="btDisconn">Disconnect BlueRetro</button>
+</div>
 <div id="divGlobalCfg" style="display:none;margin-bottom:1em;">
     <h2 style="margin:0;">Global Config</h2>
 </div>
@@ -32,6 +35,9 @@ index: index.html
       ChromeSamples.clearLog();
       btConn();
     }
+  });
+  document.getElementById("btDisconn").addEventListener('click', function() {
+    btDisconn();
   });
 </script>
 
