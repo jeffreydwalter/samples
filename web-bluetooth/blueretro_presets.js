@@ -409,7 +409,7 @@ function writeInputCfg(cfgId, cfg) {
 }
 
 function saveInput() {
-    var preset = Number(presets[document.getElementById("presetsName").value);
+    var preset = Number(document.getElementById("presetsName").value);
     var nbMapping = presets[preset].length;
     var cfgSize = nbMapping*8 + 3;
     var cfg = new Uint8Array(cfgSize);
