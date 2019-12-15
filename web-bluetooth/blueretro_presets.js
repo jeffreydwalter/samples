@@ -420,15 +420,16 @@ function saveInput() {
     cfg[j++] = 0;
     cfg[j++] = nbMapping;
 
+    log('Input: '+ cfgId + 'Preset: ' + preset);
     for (var i = 0; i < nbMapping; i++) {
-        cfg[j++] = presets[preset][0];
-        cfg[j++] = presets[preset][1];
-        cfg[j++] = presets[preset][2];
-        cfg[j++] = presets[preset][3];
-        cfg[j++] = presets[preset][4];
-        cfg[j++] = presets[preset][5];
-        cfg[j++] = presets[preset][6];
-        cfg[j++] = Number(presets[preset][7]) | (Number(presets[preset][8]) << 4);
+        cfg[j++] = presets[preset][i][0];
+        cfg[j++] = presets[preset][i][1];
+        cfg[j++] = presets[preset][i][2];
+        cfg[j++] = presets[preset][i][3];
+        cfg[j++] = presets[preset][i][4];
+        cfg[j++] = presets[preset][i][5];
+        cfg[j++] = presets[preset][i][6];
+        cfg[j++] = Number(presets[preset][i][7]) | (Number(presets[preset][i][8]) << 4);
     }
 
     return new Promise(function(resolve, reject) {
