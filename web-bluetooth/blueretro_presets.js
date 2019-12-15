@@ -451,7 +451,6 @@ function btConn() {
     .then(device => {
         log('Connecting to GATT Server...');
         bluetoothDevice = device;
-        bluetoothDevice.addEventListener('gattserverdisconnected', onDisconnected);
         return bluetoothDevice.gatt.connect();
     })
     .then(server => {
