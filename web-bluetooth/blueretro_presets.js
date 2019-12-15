@@ -289,6 +289,7 @@ var presets = [
         [btn.PAD_RS, btn.PAD_RS, 0, 100, 50, 135, 0, 0, 0],
         [btn.PAD_RB_LEFT, btn.PAD_RB_LEFT, 0, 100, 50, 135, 0, 0, 0],
         [btn.PAD_RB_DOWN, btn.PAD_RB_DOWN, 0, 100, 50, 135, 0, 0, 0],
+        [btn.PAD_MM, btn.PAD_MM, 0, 100, 50, 135, 0, 0, 0],
     ],
     [
         [btn.PAD_LX_LEFT, btn.PAD_LX_LEFT, 1, 100, 50, 135, 0, 0, 0],
@@ -309,6 +310,7 @@ var presets = [
         [btn.PAD_RS, btn.PAD_RM, 1, 100, 50, 135, 0, 0, 0],
         [btn.PAD_RB_LEFT, btn.PAD_RB_LEFT, 0, 100, 50, 135, 0, 0, 0],
         [btn.PAD_RB_DOWN, btn.PAD_RB_DOWN, 0, 100, 50, 135, 0, 0, 0],
+        [btn.PAD_MM, btn.PAD_MM, 0, 100, 50, 135, 0, 0, 0],
     ],
     [
         [btn.PAD_LX_LEFT, btn.PAD_LX_LEFT, 2, 100, 50, 135, 0, 0, 0],
@@ -329,6 +331,7 @@ var presets = [
         [btn.PAD_RS, btn.PAD_RM, 2, 100, 50, 135, 0, 0, 0],
         [btn.PAD_RB_LEFT, btn.PAD_RB_LEFT, 1, 100, 50, 135, 0, 0, 0],
         [btn.PAD_RB_DOWN, btn.PAD_RB_DOWN, 1, 100, 50, 135, 0, 0, 0],
+        [btn.PAD_MM, btn.PAD_MM, 1, 100, 50, 135, 0, 0, 0],
     ],
 ];
 
