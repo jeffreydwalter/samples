@@ -461,17 +461,10 @@ function btConn() {
         log('Init Cfg DOM...');
         brService = service;
         initBlueRetroCfg();
-        return loadInputCfg(0);
-    })
-    .then(() => {
         document.getElementById("divBtConn").style.display = 'none';
         document.getElementById("divInputCfg").style.display = 'block';
     })
     .catch(error => {
         log('Argh! ' + error);
     });
-}
-
-function selectInput() {
-    loadInputCfg(this.value);
 }
