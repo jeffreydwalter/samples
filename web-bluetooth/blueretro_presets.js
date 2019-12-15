@@ -413,7 +413,7 @@ function saveInput() {
     var nbMapping = presets[preset].length;
     var cfgSize = nbMapping*8 + 3;
     var cfg = new Uint8Array(cfgSize);
-    cfgId = document.getElementById("inputSelect").value;
+    var cfgId = Number(document.getElementById("inputSelect").value);
 
     var j = 0;
     cfg[j++] = 0;
@@ -424,7 +424,7 @@ function saveInput() {
     for (var i = 0; i < nbMapping; i++) {
         cfg[j++] = presets[preset][i][0];
         cfg[j++] = presets[preset][i][1];
-        cfg[j++] = presets[preset][i][2];
+        cfg[j++] = presets[preset][i][2] + cfgId;
         cfg[j++] = presets[preset][i][3];
         cfg[j++] = presets[preset][i][4];
         cfg[j++] = presets[preset][i][5];
