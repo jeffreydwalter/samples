@@ -160,7 +160,9 @@ const btn = {
 
 var presetsName = [
     'Default PAD+KB+M',
-    'N64 GoldenEye 007',
+    'N64 GoldenEye 007 / Perfect Dark 2.1',
+    'N64 GoldenEye 007 / Perfect Dark 2.2 p1',
+    'N64 GoldenEye 007 / Perfect Dark 2.2 p2',
 ];
 
 var presets = [
@@ -287,6 +289,46 @@ var presets = [
         [btn.PAD_RS, btn.PAD_RS, 0, 100, 50, 135, 0, 0, 0],
         [btn.PAD_RB_LEFT, btn.PAD_RB_LEFT, 0, 100, 50, 135, 0, 0, 0],
         [btn.PAD_RB_DOWN, btn.PAD_RB_DOWN, 0, 100, 50, 135, 0, 0, 0],
+    ],
+    [
+        [btn.PAD_LX_LEFT, btn.PAD_LX_LEFT, 1, 100, 50, 135, 0, 0, 0],
+        [btn.PAD_LX_RIGHT, btn.PAD_LX_RIGHT, 1, 100, 50, 135, 0, 0, 0],
+        [btn.PAD_LY_DOWN, btn.PAD_LY_DOWN, 1, 100, 50, 135, 0, 0, 0],
+        [btn.PAD_LY_UP, btn.PAD_LY_UP, 1, 100, 50, 135, 0, 0, 0],
+        [btn.PAD_RX_LEFT, btn.PAD_LX_LEFT, 0, 100, 50, 135, 0, 0, 0],
+        [btn.PAD_RX_RIGHT, btn.PAD_LX_RIGHT, 0, 100, 50, 135, 0, 0, 0],
+        [btn.PAD_RY_DOWN, btn.PAD_LY_DOWN, 0, 100, 50, 135, 0, 0, 0],
+        [btn.PAD_RY_UP, btn.PAD_LY_UP, 0, 100, 50, 135, 0, 0, 0],
+        [btn.PAD_LD_LEFT, btn.PAD_LD_LEFT, 0, 100, 50, 135, 0, 0, 0],
+        [btn.PAD_LD_RIGHT, btn.PAD_LD_RIGHT, 0, 100, 50, 135, 0, 0, 0],
+        [btn.PAD_LD_DOWN, btn.PAD_LD_DOWN, 0, 100, 50, 135, 0, 0, 0],
+        [btn.PAD_LD_UP, btn.PAD_LD_UP, 0, 100, 50, 135, 0, 0, 0],
+        [btn.PAD_LM, btn.PAD_LM, 0, 100, 50, 135, 0, 0, 0],
+        [btn.PAD_RM, btn.PAD_RM, 0, 100, 50, 135, 0, 0, 0],
+        [btn.PAD_LS, btn.PAD_LM, 1, 100, 50, 135, 0, 0, 0],
+        [btn.PAD_RS, btn.PAD_RM, 1, 100, 50, 135, 0, 0, 0],
+        [btn.PAD_RB_LEFT, btn.PAD_RB_LEFT, 0, 100, 50, 135, 0, 0, 0],
+        [btn.PAD_RB_DOWN, btn.PAD_RB_DOWN, 0, 100, 50, 135, 0, 0, 0],
+    ],
+    [
+        [btn.PAD_LX_LEFT, btn.PAD_LX_LEFT, 2, 100, 50, 135, 0, 0, 0],
+        [btn.PAD_LX_RIGHT, btn.PAD_LX_RIGHT, 2, 100, 50, 135, 0, 0, 0],
+        [btn.PAD_LY_DOWN, btn.PAD_LY_DOWN, 2, 100, 50, 135, 0, 0, 0],
+        [btn.PAD_LY_UP, btn.PAD_LY_UP, 2, 100, 50, 135, 0, 0, 0],
+        [btn.PAD_RX_LEFT, btn.PAD_LX_LEFT, 1, 100, 50, 135, 0, 0, 0],
+        [btn.PAD_RX_RIGHT, btn.PAD_LX_RIGHT, 1, 100, 50, 135, 0, 0, 0],
+        [btn.PAD_RY_DOWN, btn.PAD_LY_DOWN, 1, 100, 50, 135, 0, 0, 0],
+        [btn.PAD_RY_UP, btn.PAD_LY_UP, 1, 100, 50, 135, 0, 0, 0],
+        [btn.PAD_LD_LEFT, btn.PAD_LD_LEFT, 1, 100, 50, 135, 0, 0, 0],
+        [btn.PAD_LD_RIGHT, btn.PAD_LD_RIGHT, 1, 100, 50, 135, 0, 0, 0],
+        [btn.PAD_LD_DOWN, btn.PAD_LD_DOWN, 1, 100, 50, 135, 0, 0, 0],
+        [btn.PAD_LD_UP, btn.PAD_LD_UP, 1, 100, 50, 135, 0, 0, 0],
+        [btn.PAD_LM, btn.PAD_LM, 1, 100, 50, 135, 0, 0, 0],
+        [btn.PAD_RM, btn.PAD_RM, 1, 100, 50, 135, 0, 0, 0],
+        [btn.PAD_LS, btn.PAD_LM, 2, 100, 50, 135, 0, 0, 0],
+        [btn.PAD_RS, btn.PAD_RM, 2, 100, 50, 135, 0, 0, 0],
+        [btn.PAD_RB_LEFT, btn.PAD_RB_LEFT, 1, 100, 50, 135, 0, 0, 0],
+        [btn.PAD_RB_DOWN, btn.PAD_RB_DOWN, 1, 100, 50, 135, 0, 0, 0],
     ],
 ];
 
