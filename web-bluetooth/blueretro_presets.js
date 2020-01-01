@@ -431,6 +431,8 @@ function initOutputMapping() {
 function fetchMap(data, idx) {
     var presets = [];
     return new Promise(function(resolve, reject) {
+        log(typeof data);
+        log(data);
         fetch("map/" + data[idx].name)
         .then(rsp => {
             return rsp.json();
