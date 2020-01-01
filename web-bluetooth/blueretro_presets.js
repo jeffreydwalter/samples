@@ -434,6 +434,7 @@ function fetchMap(data, idx) {
         log(typeof data);
         log(data);
         log(data[0].name);
+        log(data[idx].name);
         fetch("map/" + data[idx].name)
         .then(rsp => {
             return rsp.json();
