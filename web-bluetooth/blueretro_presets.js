@@ -436,8 +436,7 @@ function fetchMap(files, idx) {
             return rsp.json();
         })
         .then(data => {
-            log(data);
-            presets[idx] = data;
+            presets.push(data);
             if (idx < files.length) {
                 resolve(fetchMap(files, ++idx));
             }
@@ -472,6 +471,7 @@ function initBlueRetroCfg() {
         return fetchMap(data, 0);
     })
     .then(presets => {
+        log(presets);
         log(presets[0].name);
         initInputSelect();
         initOutputMapping();
