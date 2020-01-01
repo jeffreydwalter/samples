@@ -428,7 +428,7 @@ function initOutputMapping() {
     divInputCfg.appendChild(divMappingGrp);
 }
 
-function fetchMap(data, idx) {
+function fetchMap(files, idx) {
     var presets = [];
     return new Promise(function(resolve, reject) {
         fetch("map/" + data[idx].name)
@@ -438,8 +438,8 @@ function fetchMap(data, idx) {
         .then(data => {
             log(data);
             presets[idx] = data;
-            if (idx < data.length) {
-                resolve(fetchMap(data, ++idx));
+            if (idx < files.length) {
+                resolve(fetchMap(files, ++idx));
             }
             else {
                 resolve(presets);
