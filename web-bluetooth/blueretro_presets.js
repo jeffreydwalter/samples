@@ -447,7 +447,7 @@ function initBlueRetroCfg() {
     getMapList('https://api.github.com/repos/darthcloud/samples/contents/web-bluetooth/map/')
     .then(data => {
         for (let file of data) {
-            log(file.path + file.name);
+            log(file);
         }
         initInputSelect();
         initOutputMapping();
