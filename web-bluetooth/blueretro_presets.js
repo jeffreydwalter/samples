@@ -433,6 +433,7 @@ function fetchMap(data, idx) {
     return new Promise(function(resolve, reject) {
         log(typeof data);
         log(data);
+        log(data[0].name);
         fetch("map/" + data[idx].name)
         .then(rsp => {
             return rsp.json();
