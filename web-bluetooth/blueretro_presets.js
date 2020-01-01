@@ -428,9 +428,33 @@ function initOutputMapping() {
     divInputCfg.appendChild(divMappingGrp);
 }
 
+function getMapList(url) {
+    return new Promise(function(resolve, reject) {
+        fetch(url)
+        .then(rsp => {
+            return rsp.json();
+        })
+        .then(data => {
+            resolve(data);
+        })
+        .catch(error => {
+            reject(error);
+        });
+    });
+}
+
 function initBlueRetroCfg() {
-    initInputSelect();
-    initOutputMapping();
+    getMapList('https://api.github.com/repos/darthcloud/samples/contents/web-bluetooth/map/')
+    .then(data => {
+        for (let file of data) {
+            log(file.path + file.name);
+        }
+        initInputSelect();
+        initOutputMapping();
+    })
+    .catch(error => {
+        log('Argh! ' + error);
+    });
 }
 
 function writeWriteRecursive(cfg, inputCtrl, ctrl_chrc, data_chrc) {
