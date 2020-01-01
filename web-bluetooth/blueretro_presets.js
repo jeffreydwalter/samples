@@ -431,15 +431,13 @@ function initOutputMapping() {
 function fetchMap(data, idx) {
     var presets = [];
     return new Promise(function(resolve, reject) {
-        log(typeof data);
-        log(data);
-        log(data[0].name);
-        log(data[idx].name);
         fetch("map/" + data[idx].name)
         .then(rsp => {
+            log(rsp);
             return rsp.json();
         })
         .then(data => {
+            presets[idx] = data;
             if (idx < data.length) {
                 resolve(fetchMap(data, ++idx));
             }
