@@ -433,10 +433,10 @@ function fetchMap(data, idx) {
     return new Promise(function(resolve, reject) {
         fetch("map/" + data[idx].name)
         .then(rsp => {
-            log(rsp);
             return rsp.json();
         })
         .then(data => {
+            log(data);
             presets[idx] = data;
             if (idx < data.length) {
                 resolve(fetchMap(data, ++idx));
