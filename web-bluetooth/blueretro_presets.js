@@ -431,7 +431,7 @@ function initOutputMapping() {
 function fetchMap(files, idx) {
     var presets = [];
     return new Promise(function(resolve, reject) {
-        fetch("map/" + data[idx].name)
+        fetch("map/" + files[idx].name)
         .then(rsp => {
             return rsp.json();
         })
