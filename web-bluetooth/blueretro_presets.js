@@ -440,9 +440,10 @@ function fetchMap(presets, files, idx) {
             log(idx);
             log(data.name);
             log(presets[idx].name);
-            if (Number(idx) < files.length) {
+
+            if (++idx < files.length) {
                 log("rec call");
-                resolve(fetchMap(presets, files, ++idx));
+                resolve(fetchMap(presets, files, idx));
             }
             else {
                 resolve(presets);
