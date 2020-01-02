@@ -1,5 +1,5 @@
 {
-    "name":"Gamepad only",
+    "name":"Default Gamepad only",
     "desc":"Generic preset that should be good for most games. Only map gamepad buttons & axes.",
     "map":[
         ["PAD_LX_LEFT",  "PAD_LX_LEFT",  0, 100, 50, 135, 0, 0, 0],
