@@ -437,6 +437,7 @@ function fetchMap(files, idx) {
         })
         .then(data => {
             presets.push(data);
+            log(idx + " " + presets[idx].name);
             if (idx < files.length) {
                 resolve(fetchMap(files, ++idx));
             }
