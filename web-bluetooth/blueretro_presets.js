@@ -261,7 +261,7 @@ function initBlueRetroCfg() {
     .then(files => {
         return fetchMap(presets, files, 0);
     })
-    .then(test => {
+    .then(_ => {
         initInputSelect();
         initOutputMapping();
     })
