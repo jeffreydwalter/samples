@@ -428,8 +428,7 @@ function initOutputMapping() {
     divInputCfg.appendChild(divMappingGrp);
 }
 
-function fetchMap(files, idx) {
-    var presets = new Array();
+function fetchMap(presets, files, idx) {
     return new Promise(function(resolve, reject) {
         fetch("map/" + files[idx].name)
         .then(rsp => {
@@ -442,7 +441,6 @@ function fetchMap(files, idx) {
                 resolve(fetchMap(files, ++idx));
             }
             else {
-                log(presets);
                 resolve(presets);
             }
         })
@@ -468,13 +466,14 @@ function getMapList(url) {
 }
 
 function initBlueRetroCfg() {
+    var presets = new Array();
     getMapList('https://api.github.com/repos/darthcloud/samples/contents/web-bluetooth/map/')
-    .then(data => {
-        return fetchMap(data, 0);
+    .then(files => {
+        return fetchMap(presets, files, 0);
     })
-    .then(presets => {
-        log(presets);
+    .then(test => {
         log(presets[0].name);
+        log(test[0].name);
         initInputSelect();
         initOutputMapping();
     })
