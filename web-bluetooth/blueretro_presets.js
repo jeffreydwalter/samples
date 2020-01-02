@@ -185,7 +185,6 @@ function initInputSelect() {
         main.add(option);
     }
     main.id = "inputSelect";
-    main.addEventListener("change", selectInput);
     div.appendChild(main);
 
     var main = document.createElement("select");
@@ -196,6 +195,7 @@ function initInputSelect() {
         main.add(option);
     }
     main.id = "presetsName";
+    main.addEventListener("change", selectInput);
     div.appendChild(main);
 
     var divInputCfg = document.getElementById("divInputCfg");
