@@ -436,7 +436,9 @@ function fetchMap(presets, files, idx) {
         })
         .then(data => {
             presets.push(data);
-            log(idx + " " + presets[idx].name);
+            log(idx);
+            log(data.name);
+            log(presets[idx].name);
             if (idx < files.length) {
                 resolve(fetchMap(files, ++idx));
             }
@@ -472,8 +474,6 @@ function initBlueRetroCfg() {
         return fetchMap(presets, files, 0);
     })
     .then(test => {
-        log(presets[0].name);
-        log(test[0].name);
         initInputSelect();
         initOutputMapping();
     })
