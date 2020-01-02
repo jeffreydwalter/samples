@@ -174,6 +174,7 @@ var mappingElement = null;
 let inputChrc = null;
 
 function initInputSelect() {
+    document.getElementById("desc").text = presets[0].desc;
     var div = document.createElement("div");
 
     var main = document.createElement("select");
@@ -184,6 +185,7 @@ function initInputSelect() {
         main.add(option);
     }
     main.id = "inputSelect";
+    main.addEventListener("change", selectInput);
     div.appendChild(main);
 
     var main = document.createElement("select");
@@ -382,4 +384,8 @@ function btConn() {
     .catch(error => {
         log('Argh! ' + error);
     });
+}
+
+function selectInput() {
+    document.getElementById("desc").text = presets[Number(this.value)].desc;
 }
