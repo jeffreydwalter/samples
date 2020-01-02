@@ -336,8 +336,8 @@ function saveInput() {
 
     log('Input: '+ cfgId + 'Preset: ' + preset);
     for (var i = 0; i < nbMapping; i++) {
-        cfg[j++] = presets[preset].map[i][0];
-        cfg[j++] = presets[preset].map[i][1];
+        cfg[j++] = btn[presets[preset].map[i][0]];
+        cfg[j++] = btn[presets[preset].map[i][1]];
         cfg[j++] = presets[preset].map[i][2] + cfgId;
         cfg[j++] = presets[preset].map[i][3];
         cfg[j++] = presets[preset].map[i][4];
