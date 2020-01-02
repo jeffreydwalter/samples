@@ -174,7 +174,7 @@ var mappingElement = null;
 let inputChrc = null;
 
 function initInputSelect() {
-    document.getElementById("desc").text = presets[0].desc;
+    document.getElementById("desc").textContent = presets[0].desc;
     var div = document.createElement("div");
 
     var main = document.createElement("select");
@@ -387,5 +387,5 @@ function btConn() {
 }
 
 function selectInput() {
-    document.getElementById("desc").text = presets[Number(this.value)].desc;
+    document.getElementById("desc").textContent = presets[Number(this.value)].desc;
 }
