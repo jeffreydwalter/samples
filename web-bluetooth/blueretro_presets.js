@@ -436,6 +436,7 @@ function fetchMap(presets, files, idx) {
         })
         .then(data => {
             presets.push(data);
+            log(files.length);
             log(idx);
             log(data.name);
             log(presets[idx].name);
