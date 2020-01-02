@@ -429,7 +429,7 @@ function initOutputMapping() {
 }
 
 function fetchMap(files, idx) {
-    var presets = [];
+    var presets = new Array();
     return new Promise(function(resolve, reject) {
         fetch("map/" + files[idx].name)
         .then(rsp => {
@@ -441,6 +441,7 @@ function fetchMap(files, idx) {
                 resolve(fetchMap(files, ++idx));
             }
             else {
+                log(presets);
                 resolve(presets);
             }
         })
