@@ -440,7 +440,7 @@ function fetchMap(presets, files, idx) {
             log(data.name);
             log(presets[idx].name);
             if (idx < files.length) {
-                resolve(fetchMap(files, ++idx));
+                resolve(fetchMap(presets, files, ++idx));
             }
             else {
                 resolve(presets);
