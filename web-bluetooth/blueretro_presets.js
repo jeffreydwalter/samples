@@ -245,7 +245,8 @@ function getMapList(url) {
     return new Promise(function(resolve, reject) {
         fetch(url)
         .then(rsp => {
-            printf(rsp);
+            log(rsp);
+            log(" ");
             return rsp.json();
         })
         .then(data => {
