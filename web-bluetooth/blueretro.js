@@ -135,6 +135,13 @@ var devCfg = [
     'Mouse',
 ];
 
+var accCfg = [
+    'None',
+    'Memory',
+    'Rumble',
+    'Both',
+];
+
 var scaling = [
     'Linear',
     'Aggressive',
@@ -239,6 +246,17 @@ function initOutputMode() {
         main.add(option);
     }
     main.id = "outputMode";
+    div.appendChild(main);
+
+    /* Output select */
+    main = document.createElement("select");
+    for (var i = 0; i < accCfg.length; i++) {
+        var option  = document.createElement("option");
+        option.value = i;
+        option.text = accCfg[i];
+        main.add(option);
+    }
+    main.id = "outputAcc";
     div.appendChild(main);
 
     var divOutputCfg = document.getElementById("divOutputCfg");
@@ -500,6 +518,7 @@ function loadOutputCfg(cfgId) {
         .then(value => {
             log('Output ' + cfgId + ' Config size: ' + value.byteLength);
             document.getElementById("outputMode").value = value.getUint8(0);
+            document.getElementById("outputAcc").value = value.getUint8(1);
             resolve();
         })
         .catch(error => {
@@ -639,8 +658,9 @@ function saveGlobal() {
 }
 
 function saveOutput() {
-    var data = new Uint8Array(1);
+    var data = new Uint8Array(2);
     data[0] = document.getElementById("outputMode").value;
+    data[1] = document.getElementById("outputAcc").value;
     cfgId = document.getElementById("outputSelect").value;
     return new Promise(function(resolve, reject) {
         log('Get Output ' + cfgId + ' CTRL CHRC...');
