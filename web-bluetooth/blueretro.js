@@ -125,21 +125,29 @@ var btnList = [
 
 var systemCfg = [
     'Auto',
+    'NES',
+    'SMS',
+    'PCE',
+    'GENESIS',
+    'SNES',
+    'SATURN',
+    'PSX',
     'N64',
-    'DreamCast',
+    'DC',
+    'PS2',
+    'GC',
+    'WII_EXT',
 ];
 
 var multitapCfg = [
-    'Auto',
     'None',
     'Slot 1',
     'Slot 2',
     'Dual',
-    'Special',
+    'Alt',
 ];
 
 var devCfg = [
-    'Auto',
     'GamePad',
     'GamePadAlt',
     'Keyboard',
@@ -159,13 +167,15 @@ var scaling = [
     'Relaxed',
     'Wide',
     'S-Curve',
+    'Passthrough',
 ];
 
 var diagScaling = [
-    'Auto',
-    'Circular->Circular',
-    'Circular->N64 Hexagone',
+    'Passthrough',
     'Circular->Square',
+    'Circular->N64 Hexagone',
+    'Square->Circular',
+    'Square->N64 Hexagone'
 ];
 
 const maxMainInput = 12;
