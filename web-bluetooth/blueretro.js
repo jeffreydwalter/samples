@@ -385,7 +385,7 @@ function initOutputMapping() {
     /* Max */
     var max = document.createElement("select");
     max.setAttribute("style", "max-width:10%;");
-    for (var i = 5; i <= maxMax; i += 5) {
+    for (var i = 0; i <= maxMax; i += 5) {
         var option  = document.createElement("option");
         option.value = i;
         option.text = i + "%";
@@ -398,7 +398,7 @@ function initOutputMapping() {
     /* Threshold */
     var thres = document.createElement("select");
     thres.setAttribute("style", "thres-width:10%;");
-    for (var i = 5; i <= maxThres; i += 5) {
+    for (var i = 0; i <= maxThres; i += 5) {
         var option  = document.createElement("option");
         option.value = i;
         option.text = i + "%";
@@ -411,7 +411,7 @@ function initOutputMapping() {
     /* Deadone */
     var dz = document.createElement("select");
     dz.setAttribute("style", "dz-width:10%;");
-    for (var i = 5; i <= maxMax; i += 5) {
+    for (var i = 0; i <= maxMax; i += 5) {
         var option  = document.createElement("option");
         option.value = i;
         option.text = i/10000 + "%";
