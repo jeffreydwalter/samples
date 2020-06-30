@@ -494,7 +494,7 @@ function initBlueRetroCfg() {
     initOutputSelect();
     initOutputMode();
     initInputSelect();
-    initInputAssign();
+    //initInputAssign();
     initOutputMapping();
 }
 
@@ -608,8 +608,8 @@ function loadInputCfg(cfgId) {
         readInputCfg(cfgId, cfg)
         .then(value => {
             log('Input ' + cfgId + ' Config size: ' + value.byteLength);
-            document.getElementById("mainInput").value = value[0];
-            document.getElementById("subInput").value = value[1];
+            //document.getElementById("mainInput").value = value[0];
+            //document.getElementById("subInput").value = value[1];
 
             var div = document.getElementById("divMapping");
             if (value[2] < nbMapping) {
@@ -780,8 +780,8 @@ function saveInput() {
     var diag = document.getElementsByClassName("diag");
 
     var j = 0;
-    cfg[j++] = document.getElementById("mainInput").value;
-    cfg[j++] = document.getElementById("subInput").value;
+    cfg[j++] = 0;//document.getElementById("mainInput").value;
+    cfg[j++] = 0;//document.getElementById("subInput").value;
     cfg[j++] = nbMapping;
 
     for (var i = 0; i < nbMapping; i++) {
