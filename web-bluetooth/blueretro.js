@@ -386,8 +386,15 @@ function initInputAssign() {
 
 function initOutputMapping() {
     mappingElement = document.createElement("div");
+    mappingElement.setAttribute("style", "margin-top:1em;");
 
     /* Src */
+    var span = document.createElement("span");
+    span.setAttribute("style", "display:inline-block;");
+    var label = document.createElement("label");
+    label.innerText = 'Src';
+    label.setAttribute("style", "display:block;");
+
     var src = document.createElement("select");
     src.setAttribute("style", "max-width:10%;");
     for (var i = 0; i < btnList.length; i++) {
@@ -397,14 +404,30 @@ function initOutputMapping() {
         src.add(option);
     }
     src.setAttribute("class", "src");
-    mappingElement.appendChild(src);
+    span.appendChild(label);
+    span.appendChild(src);
+    mappingElement.appendChild(span);
 
     /* Dest */
+    span = document.createElement("span");
+    span.setAttribute("style", "display:inline-block;");
+    label = document.createElement("label");
+    label.innerText = 'Dest';
+    label.setAttribute("style", "display:block;");
+
     var dest = src.cloneNode(true);
     dest.setAttribute("class", "dest");
-    mappingElement.appendChild(dest);
+    span.appendChild(label);
+    span.appendChild(dest);
+    mappingElement.appendChild(span);
 
     /* Dest ID */
+    span = document.createElement("span");
+    span.setAttribute("style", "display:inline-block;");
+    label = document.createElement("label");
+    label.innerText = 'Dest ID';
+    label.setAttribute("style", "display:block;");
+
     var destId = document.createElement("select");
     destId.setAttribute("style", "max-width:10%;");
     for (var i = 0; i < maxOutput; i++) {
@@ -414,9 +437,17 @@ function initOutputMapping() {
         destId.add(option);
     }
     destId.setAttribute("class", "destId");
-    mappingElement.appendChild(destId);
+    span.appendChild(label);
+    span.appendChild(destId);
+    mappingElement.appendChild(span);
 
     /* Max */
+    span = document.createElement("span");
+    span.setAttribute("style", "display:inline-block;");
+    label = document.createElement("label");
+    label.innerText = 'Max';
+    label.setAttribute("style", "display:block;");
+
     var max = document.createElement("select");
     max.setAttribute("style", "max-width:10%;");
     for (var i = 0; i <= maxMax; i += 5) {
@@ -427,9 +458,17 @@ function initOutputMapping() {
     }
     max.setAttribute("class", "max");
     max.value = 100;
-    mappingElement.appendChild(max);
+    span.appendChild(label);
+    span.appendChild(max);
+    mappingElement.appendChild(span);
 
     /* Threshold */
+    span = document.createElement("span");
+    span.setAttribute("style", "display:inline-block;");
+    label = document.createElement("label");
+    label.innerText = 'Threshold';
+    label.setAttribute("style", "display:block;");
+
     var thres = document.createElement("select");
     thres.setAttribute("style", "thres-width:10%;");
     for (var i = 0; i <= maxThres; i += 5) {
@@ -440,9 +479,17 @@ function initOutputMapping() {
     }
     thres.setAttribute("class", "thres");
     thres.value = 50;
-    mappingElement.appendChild(thres);
+    span.appendChild(label);
+    span.appendChild(thres);
+    mappingElement.appendChild(span);
 
     /* Deadone */
+    span = document.createElement("span");
+    span.setAttribute("style", "display:inline-block;");
+    label = document.createElement("label");
+    label.innerText = 'Deadzone';
+    label.setAttribute("style", "display:block;");
+
     var dz = document.createElement("select");
     dz.setAttribute("style", "dz-width:10%;");
     for (var i = 0; i <= maxMax; i += 5) {
@@ -453,9 +500,17 @@ function initOutputMapping() {
     }
     dz.setAttribute("class", "dz");
     dz.value = 135;
-    mappingElement.appendChild(dz);
+    span.appendChild(label);
+    span.appendChild(dz);
+    mappingElement.appendChild(span);
 
     /* Turbo */
+    span = document.createElement("span");
+    span.setAttribute("style", "display:inline-block;");
+    label = document.createElement("label");
+    label.innerText = 'Turbo';
+    label.setAttribute("style", "display:block;");
+
     var turbo = document.createElement("select");
     turbo.setAttribute("style", "max-width:10%;");
     for (var i = 0; i < maxTurbo; i++) {
@@ -470,9 +525,17 @@ function initOutputMapping() {
         turbo.add(option);
     }
     turbo.setAttribute("class", "turbo");
-    mappingElement.appendChild(turbo);
+    span.appendChild(label);
+    span.appendChild(turbo);
+    mappingElement.appendChild(span);
 
     /* Scaling */
+    span = document.createElement("span");
+    span.setAttribute("style", "display:inline-block;");
+    label = document.createElement("label");
+    label.innerText = 'Scaling';
+    label.setAttribute("style", "display:block;");
+
     var sca = document.createElement("select");
     sca.setAttribute("style", "max-width:10%;");
     for (var i = 0; i < scaling.length; i++) {
@@ -482,9 +545,17 @@ function initOutputMapping() {
         sca.add(option);
     }
     sca.setAttribute("class", "scaling");
-    mappingElement.appendChild(sca);
+    span.appendChild(label);
+    span.appendChild(sca);
+    mappingElement.appendChild(span);
 
     /* Scaling diag */
+    span = document.createElement("span");
+    span.setAttribute("style", "display:inline-block;");
+    label = document.createElement("label");
+    label.innerText = 'Diagonal';
+    label.setAttribute("style", "display:block;");
+
     var diag = document.createElement("select");
     diag.setAttribute("style", "max-width:10%;");
     for (var i = 0; i < diagScaling.length; i++) {
@@ -494,7 +565,9 @@ function initOutputMapping() {
         diag.add(option);
     }
     diag.setAttribute("class", "diag");
-    mappingElement.appendChild(diag);
+    span.appendChild(label);
+    span.appendChild(diag);
+    mappingElement.appendChild(span);
 
     /* Add button */
     var addButton = document.createElement("button");
