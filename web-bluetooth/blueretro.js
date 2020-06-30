@@ -385,7 +385,7 @@ function initInputAssign() {
     divInputCfg.appendChild(div);
 }
 
-function initiFirstOutputMapping() {
+function initFirstOutputMapping() {
     mappingElement = document.createElement("div");
 
     /* Src */
