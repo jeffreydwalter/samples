@@ -396,7 +396,6 @@ function initOutputMapping() {
     label.setAttribute("style", "display:block;");
 
     var src = document.createElement("select");
-    src.setAttribute("style", "max-width:10%;");
     for (var i = 0; i < btnList.length; i++) {
         var option  = document.createElement("option");
         option.value = i;
@@ -429,7 +428,6 @@ function initOutputMapping() {
     label.setAttribute("style", "display:block;");
 
     var destId = document.createElement("select");
-    destId.setAttribute("style", "max-width:10%;");
     for (var i = 0; i < maxOutput; i++) {
         var option  = document.createElement("option");
         option.value = i;
@@ -449,7 +447,6 @@ function initOutputMapping() {
     label.setAttribute("style", "display:block;");
 
     var max = document.createElement("select");
-    max.setAttribute("style", "max-width:10%;");
     for (var i = 0; i <= maxMax; i += 5) {
         var option  = document.createElement("option");
         option.value = i;
@@ -470,7 +467,6 @@ function initOutputMapping() {
     label.setAttribute("style", "display:block;");
 
     var thres = document.createElement("select");
-    thres.setAttribute("style", "thres-width:10%;");
     for (var i = 0; i <= maxThres; i += 5) {
         var option  = document.createElement("option");
         option.value = i;
@@ -491,7 +487,6 @@ function initOutputMapping() {
     label.setAttribute("style", "display:block;");
 
     var dz = document.createElement("select");
-    dz.setAttribute("style", "dz-width:10%;");
     for (var i = 0; i <= maxMax; i += 5) {
         var option  = document.createElement("option");
         option.value = i;
@@ -512,7 +507,6 @@ function initOutputMapping() {
     label.setAttribute("style", "display:block;");
 
     var turbo = document.createElement("select");
-    turbo.setAttribute("style", "max-width:10%;");
     for (var i = 0; i < maxTurbo; i++) {
         var option  = document.createElement("option");
         option.value = i;
@@ -537,7 +531,6 @@ function initOutputMapping() {
     label.setAttribute("style", "display:block;");
 
     var sca = document.createElement("select");
-    sca.setAttribute("style", "max-width:10%;");
     for (var i = 0; i < scaling.length; i++) {
         var option  = document.createElement("option");
         option.value = i;
@@ -557,7 +550,7 @@ function initOutputMapping() {
     label.setAttribute("style", "display:block;");
 
     var diag = document.createElement("select");
-    diag.setAttribute("style", "max-width:10%;");
+    diag.setAttribute("style", "max-width:50%;");
     for (var i = 0; i < diagScaling.length; i++) {
         var option  = document.createElement("option");
         option.value = i;
