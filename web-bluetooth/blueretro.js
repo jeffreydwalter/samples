@@ -385,7 +385,7 @@ function initInputAssign() {
     divInputCfg.appendChild(div);
 }
 
-function initOutputMapping() {
+function initiFirstOutputMapping() {
     mappingElement = document.createElement("div");
 
     /* Src */
@@ -587,11 +587,119 @@ function initOutputMapping() {
     divMappingGrp.appendChild(addButton);
     divMappingGrp.appendChild(divSave);
     divInputCfg.appendChild(divMappingGrp);
+}
 
-    labels = mappingElement.getElementsByTagName('label');
-    for (var i = 0; i < labels.length; i++) {
-        labels[i].parentNode.removeChild(labels[i]);
+function initOutputMapping() {
+    mappingElement = document.createElement("div");
+
+    /* Src */
+    var src = document.createElement("select");
+    src.setAttribute("style", "max-width:10%;");
+    for (var i = 0; i < btnList.length; i++) {
+        var option  = document.createElement("option");
+        option.value = i;
+        option.text = btnList[i];
+        src.add(option);
     }
+    src.setAttribute("class", "src");
+    mappingElement.appendChild(src);
+
+    /* Dest */
+    var dest = src.cloneNode(true);
+    dest.setAttribute("class", "dest");
+    mappingElement.appendChild(dest);
+
+    /* Dest ID */
+    var destId = document.createElement("select");
+    destId.setAttribute("style", "max-width:10%;");
+    for (var i = 0; i < maxOutput; i++) {
+        var option  = document.createElement("option");
+        option.value = i;
+        option.text = "Output " + (i + 1);
+        destId.add(option);
+    }
+    destId.setAttribute("class", "destId");
+    mappingElement.appendChild(destId);
+
+    /* Max */
+    var max = document.createElement("select");
+    max.setAttribute("style", "max-width:10%;");
+    for (var i = 0; i <= maxMax; i += 5) {
+        var option  = document.createElement("option");
+        option.value = i;
+        option.text = i + "%";
+        max.add(option);
+    }
+    max.setAttribute("class", "max");
+    max.value = 100;
+    mappingElement.appendChild(max);
+
+    /* Threshold */
+    var thres = document.createElement("select");
+    thres.setAttribute("style", "thres-width:10%;");
+    for (var i = 0; i <= maxThres; i += 5) {
+        var option  = document.createElement("option");
+        option.value = i;
+        option.text = i + "%";
+        thres.add(option);
+    }
+    thres.setAttribute("class", "thres");
+    thres.value = 50;
+    mappingElement.appendChild(thres);
+
+    /* Deadone */
+    var dz = document.createElement("select");
+    dz.setAttribute("style", "dz-width:10%;");
+    for (var i = 0; i <= maxMax; i += 5) {
+        var option  = document.createElement("option");
+        option.value = i;
+        option.text = i/10000 + "%";
+        dz.add(option);
+    }
+    dz.setAttribute("class", "dz");
+    dz.value = 135;
+    mappingElement.appendChild(dz);
+
+    /* Turbo */
+    var turbo = document.createElement("select");
+    turbo.setAttribute("style", "max-width:10%;");
+    for (var i = 0; i < maxTurbo; i++) {
+        var option  = document.createElement("option");
+        option.value = i;
+        if (i) {
+            option.text = "Framerate/" + i;
+        }
+        else {
+            option.text = "Disable";
+        }
+        turbo.add(option);
+    }
+    turbo.setAttribute("class", "turbo");
+    mappingElement.appendChild(turbo);
+
+    /* Scaling */
+    var sca = document.createElement("select");
+    sca.setAttribute("style", "max-width:10%;");
+    for (var i = 0; i < scaling.length; i++) {
+        var option  = document.createElement("option");
+        option.value = i;
+        option.text = scaling[i];
+        sca.add(option);
+    }
+    sca.setAttribute("class", "scaling");
+    mappingElement.appendChild(sca);
+
+    /* Scaling diag */
+    var diag = document.createElement("select");
+    diag.setAttribute("style", "max-width:10%;");
+    for (var i = 0; i < diagScaling.length; i++) {
+        var option  = document.createElement("option");
+        option.value = i;
+        option.text = diagScaling[i];
+        diag.add(option);
+    }
+    diag.setAttribute("class", "diag");
+    mappingElement.appendChild(diag);
 }
 
 function initBlueRetroCfg() {
@@ -600,6 +708,7 @@ function initBlueRetroCfg() {
     initOutputMode();
     initInputSelect();
     //initInputAssign();
+    initFirstOutputMapping();
     initOutputMapping();
 }
 
