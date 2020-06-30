@@ -390,7 +390,7 @@ function initOutputMapping() {
 
     /* Src */
     var span = document.createElement("span");
-    span.setAttribute("style", "display:inline-block;");
+    span.setAttribute("style", "max-width:10%;display:inline-block;");
     var label = document.createElement("label");
     label.innerText = 'Src';
     label.setAttribute("style", "display:block;");
@@ -410,7 +410,7 @@ function initOutputMapping() {
 
     /* Dest */
     span = document.createElement("span");
-    span.setAttribute("style", "display:inline-block;");
+    span.setAttribute("style", "max-width:10%;display:inline-block;");
     label = document.createElement("label");
     label.innerText = 'Dest';
     label.setAttribute("style", "display:block;");
@@ -423,7 +423,7 @@ function initOutputMapping() {
 
     /* Dest ID */
     span = document.createElement("span");
-    span.setAttribute("style", "display:inline-block;");
+    span.setAttribute("style", "max-width:10%;display:inline-block;");
     label = document.createElement("label");
     label.innerText = 'Dest ID';
     label.setAttribute("style", "display:block;");
@@ -443,7 +443,7 @@ function initOutputMapping() {
 
     /* Max */
     span = document.createElement("span");
-    span.setAttribute("style", "display:inline-block;");
+    span.setAttribute("style", "max-width:10%;display:inline-block;");
     label = document.createElement("label");
     label.innerText = 'Max';
     label.setAttribute("style", "display:block;");
@@ -464,7 +464,7 @@ function initOutputMapping() {
 
     /* Threshold */
     span = document.createElement("span");
-    span.setAttribute("style", "display:inline-block;");
+    span.setAttribute("style", "max-width:10%;display:inline-block;");
     label = document.createElement("label");
     label.innerText = 'Thres';
     label.setAttribute("style", "display:block;");
@@ -485,7 +485,7 @@ function initOutputMapping() {
 
     /* Deadone */
     span = document.createElement("span");
-    span.setAttribute("style", "display:inline-block;");
+    span.setAttribute("style", "max-width:10%;display:inline-block;");
     label = document.createElement("label");
     label.innerText = 'Dz';
     label.setAttribute("style", "display:block;");
@@ -506,7 +506,7 @@ function initOutputMapping() {
 
     /* Turbo */
     span = document.createElement("span");
-    span.setAttribute("style", "display:inline-block;");
+    span.setAttribute("style", "max-width:10%;display:inline-block;");
     label = document.createElement("label");
     label.innerText = 'T';
     label.setAttribute("style", "display:block;");
@@ -531,7 +531,7 @@ function initOutputMapping() {
 
     /* Scaling */
     span = document.createElement("span");
-    span.setAttribute("style", "display:inline-block;");
+    span.setAttribute("style", "max-width:10%;display:inline-block;");
     label = document.createElement("label");
     label.innerText = 'Sca';
     label.setAttribute("style", "display:block;");
@@ -551,7 +551,7 @@ function initOutputMapping() {
 
     /* Scaling diag */
     span = document.createElement("span");
-    span.setAttribute("style", "display:inline-block;");
+    span.setAttribute("style", "max-width:10%;display:inline-block;");
     label = document.createElement("label");
     label.innerText = 'Diag';
     label.setAttribute("style", "display:block;");
