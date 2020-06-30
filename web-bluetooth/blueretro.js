@@ -198,6 +198,8 @@ function initGlobalCfg() {
     /* System */
     var label = document.createElement("label");
     label.innerText = 'System: ';
+    label.setAttribute("for", "systemCfg");
+
     var sel = document.createElement("select");
     for (var i = 0; i < systemCfg.length; i++) {
         var option  = document.createElement("option");
@@ -206,8 +208,8 @@ function initGlobalCfg() {
         sel.add(option);
     }
     sel.id = "systemCfg";
-    label.appendChild(sel);
     div.appendChild(label);
+    div.appendChild(sel);
 
     var divGlobalCfg = document.getElementById("divGlobalCfg");
     divGlobalCfg.appendChild(div);
