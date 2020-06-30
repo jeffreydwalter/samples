@@ -217,6 +217,10 @@ function initGlobalCfg() {
     div = document.createElement("div");
 
     /* Multitap */
+    label = document.createElement("label");
+    label.innerText = 'Multitap: ';
+    label.setAttribute("for", "multitapCfg");
+
     sel = document.createElement("select");
     for (var i = 0; i < multitapCfg.length; i++) {
         var option  = document.createElement("option");
@@ -225,6 +229,7 @@ function initGlobalCfg() {
         sel.add(option);
     }
     sel.id = "multitapCfg";
+    div.appendChild(label);
     div.appendChild(sel);
 
     divGlobalCfg.appendChild(div);
