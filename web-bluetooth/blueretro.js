@@ -466,7 +466,7 @@ function initOutputMapping() {
     span = document.createElement("span");
     span.setAttribute("style", "display:inline-block;");
     label = document.createElement("label");
-    label.innerText = 'Threshold';
+    label.innerText = 'Thres';
     label.setAttribute("style", "display:block;");
 
     var thres = document.createElement("select");
@@ -487,7 +487,7 @@ function initOutputMapping() {
     span = document.createElement("span");
     span.setAttribute("style", "display:inline-block;");
     label = document.createElement("label");
-    label.innerText = 'Deadzone';
+    label.innerText = 'Dz';
     label.setAttribute("style", "display:block;");
 
     var dz = document.createElement("select");
@@ -508,7 +508,7 @@ function initOutputMapping() {
     span = document.createElement("span");
     span.setAttribute("style", "display:inline-block;");
     label = document.createElement("label");
-    label.innerText = 'Turbo';
+    label.innerText = 'T';
     label.setAttribute("style", "display:block;");
 
     var turbo = document.createElement("select");
@@ -533,7 +533,7 @@ function initOutputMapping() {
     span = document.createElement("span");
     span.setAttribute("style", "display:inline-block;");
     label = document.createElement("label");
-    label.innerText = 'Scaling';
+    label.innerText = 'Sca';
     label.setAttribute("style", "display:block;");
 
     var sca = document.createElement("select");
@@ -553,7 +553,7 @@ function initOutputMapping() {
     span = document.createElement("span");
     span.setAttribute("style", "display:inline-block;");
     label = document.createElement("label");
-    label.innerText = 'Diagonal';
+    label.innerText = 'Diag';
     label.setAttribute("style", "display:block;");
 
     var diag = document.createElement("select");
