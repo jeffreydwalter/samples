@@ -277,7 +277,7 @@ function initOutputMode() {
     var label = document.createElement("label");
     label.innerText = 'Mode';
     label.setAttribute("for", "outputMode");
-    label.setAttribute("style", "vertical-align:top;");
+    label.setAttribute("style", "display:block;vertical-align:top;");
 
     var main = document.createElement("select");
     for (var i = 0; i < devCfg.length; i++) {
@@ -294,7 +294,7 @@ function initOutputMode() {
     label = document.createElement("label");
     label.innerText = 'Accessories';
     label.setAttribute("for", "outputAcc");
-    label.setAttribute("style", "vertical-align:top;");
+    label.setAttribute("style", "display:block;vertical-align:top;");
 
     main = document.createElement("select");
     for (var i = 0; i < accCfg.length; i++) {
