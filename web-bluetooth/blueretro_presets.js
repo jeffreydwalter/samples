@@ -183,7 +183,7 @@ function initInputSelect() {
     for (var i = 0; i < maxMainInput; i++) {
         var option  = document.createElement("option");
         option.value = i;
-        option.text = "Input " + (i + 1);
+        option.text = "Output " + (i + 1);
         main.add(option);
     }
     main.id = "inputSelect";
