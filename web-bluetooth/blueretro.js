@@ -331,6 +331,7 @@ function initOutputMode() {
 
 function initInputSelect() {
     var div = document.createElement("div");
+    div.setAttribute("style", "margin-bottom:1em;");
 
     /* Output select */
     var main = document.createElement("select");
@@ -386,7 +387,6 @@ function initInputAssign() {
 
 function initOutputMapping() {
     mappingElement = document.createElement("div");
-    mappingElement.setAttribute("style", "margin-top:1em;");
 
     /* Src */
     var span = document.createElement("span");
@@ -587,6 +587,11 @@ function initOutputMapping() {
     divMappingGrp.appendChild(addButton);
     divMappingGrp.appendChild(divSave);
     divInputCfg.appendChild(divMappingGrp);
+
+    labels = mappingElement.getElementsByTagName('label');
+    for (var i = 0; i < labels.length; i++) {
+        labels[i].parentNode.removeChild(labels[i]);
+    }
 }
 
 function initBlueRetroCfg() {
