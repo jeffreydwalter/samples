@@ -272,9 +272,10 @@ function initOutputSelect() {
 
 function initOutputMode() {
     var div = document.createElement("div");
-    div.setAttribute("style", "display:inline-block;");
 
     /* Output mode */
+    var span = document.createElement("span");
+    span.setAttribute("style", "display:inline-block;");
     var label = document.createElement("label");
     label.innerText = 'Mode';
     label.setAttribute("for", "outputMode");
@@ -288,10 +289,13 @@ function initOutputMode() {
         main.add(option);
     }
     main.id = "outputMode";
-    div.appendChild(label);
-    div.appendChild(main);
+    span.appendChild(label);
+    span.appendChild(main);
+    div.appendChild(span);
 
     /* Output acessories */
+    span = document.createElement("span");
+    span.setAttribute("style", "display:inline-block;");
     label = document.createElement("label");
     label.innerText = 'Accessories';
     label.setAttribute("for", "outputAcc");
@@ -305,8 +309,9 @@ function initOutputMode() {
         main.add(option);
     }
     main.id = "outputAcc";
-    div.appendChild(label);
-    div.appendChild(main);
+    span.appendChild(label);
+    span.appendChild(main);
+    div.appendChild(span);
 
     var divOutputCfg = document.getElementById("divOutputCfg");
     divOutputCfg.appendChild(div);
