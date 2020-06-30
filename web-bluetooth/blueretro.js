@@ -334,15 +334,20 @@ function initInputSelect() {
     div.setAttribute("style", "margin-bottom:1em;");
 
     /* Output select */
+    var label = document.createElement("label");
+    label.innerText = 'Select output: ';
+    label.setAttribute("for", "inputSelect");
+
     var main = document.createElement("select");
     for (var i = 0; i < maxMainInput; i++) {
         var option  = document.createElement("option");
         option.value = i;
-        option.text = "Input " + (i + 1);
+        option.text = "Output " + (i + 1);
         main.add(option);
     }
     main.id = "inputSelect";
     main.addEventListener("change", selectInput);
+    div.appendChild(label);
     div.appendChild(main);
 
     var divInputCfg = document.getElementById("divInputCfg");
@@ -483,7 +488,7 @@ function initFirstOutputMapping() {
     span = document.createElement("span");
     span.setAttribute("style", "max-width:10%;display:inline-block;");
     label = document.createElement("label");
-    label.innerText = 'Dz';
+    label.innerText = 'Deadzone';
     label.setAttribute("style", "display:block;");
 
     var dz = document.createElement("select");
@@ -503,7 +508,7 @@ function initFirstOutputMapping() {
     span = document.createElement("span");
     span.setAttribute("style", "max-width:10%;display:inline-block;");
     label = document.createElement("label");
-    label.innerText = 'T';
+    label.innerText = 'Turbo';
     label.setAttribute("style", "display:block;");
 
     var turbo = document.createElement("select");
@@ -527,7 +532,7 @@ function initFirstOutputMapping() {
     span = document.createElement("span");
     span.setAttribute("style", "max-width:10%;display:inline-block;");
     label = document.createElement("label");
-    label.innerText = 'Sca';
+    label.innerText = 'Scaling';
     label.setAttribute("style", "display:block;");
 
     var sca = document.createElement("select");
@@ -546,7 +551,7 @@ function initFirstOutputMapping() {
     span = document.createElement("span");
     span.setAttribute("style", "max-width:10%;display:inline-block;");
     label = document.createElement("label");
-    label.innerText = 'Diag';
+    label.innerText = 'Diagonal';
     label.setAttribute("style", "display:block;");
 
     var diag = document.createElement("select");
