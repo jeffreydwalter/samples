@@ -250,6 +250,10 @@ function initOutputSelect() {
     var div = document.createElement("div");
 
     /* Output select */
+    var label = document.createElement("label");
+    label.innerText = 'Select output: ';
+    label.setAttribute("for", "outputSelect");
+
     var main = document.createElement("select");
     for (var i = 0; i < maxOutput; i++) {
         var option  = document.createElement("option");
@@ -259,6 +263,7 @@ function initOutputSelect() {
     }
     main.id = "outputSelect";
     main.addEventListener("change", selectOutput);
+    div.appendChild(label);
     div.appendChild(main);
 
     var divOutputCfg = document.getElementById("divOutputCfg");
@@ -268,7 +273,12 @@ function initOutputSelect() {
 function initOutputMode() {
     var div = document.createElement("div");
 
-    /* Output select */
+    /* Output mode */
+    var label = document.createElement("label");
+    label.innerText = 'Mode';
+    label.setAttribute("for", "outputMode");
+    label.setAttribute("style", "vertical-align:top;");
+
     var main = document.createElement("select");
     for (var i = 0; i < devCfg.length; i++) {
         var option  = document.createElement("option");
@@ -277,9 +287,15 @@ function initOutputMode() {
         main.add(option);
     }
     main.id = "outputMode";
+    div.appendChild(label);
     div.appendChild(main);
 
-    /* Output select */
+    /* Output acessories */
+    label = document.createElement("label");
+    label.innerText = 'Accessories';
+    label.setAttribute("for", "outputAcc");
+    label.setAttribute("style", "vertical-align:top;");
+
     main = document.createElement("select");
     for (var i = 0; i < accCfg.length; i++) {
         var option  = document.createElement("option");
@@ -288,6 +304,7 @@ function initOutputMode() {
         main.add(option);
     }
     main.id = "outputAcc";
+    div.appendChild(label);
     div.appendChild(main);
 
     var divOutputCfg = document.getElementById("divOutputCfg");
