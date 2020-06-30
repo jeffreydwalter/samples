@@ -550,7 +550,7 @@ function initOutputMapping() {
     label.setAttribute("style", "display:block;");
 
     var diag = document.createElement("select");
-    diag.setAttribute("style", "max-width:50%;");
+    diag.setAttribute("style", "max-width:100%;");
     for (var i = 0; i < diagScaling.length; i++) {
         var option  = document.createElement("option");
         option.value = i;
