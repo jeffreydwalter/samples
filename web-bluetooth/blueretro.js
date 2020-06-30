@@ -272,6 +272,7 @@ function initOutputSelect() {
 
 function initOutputMode() {
     var div = document.createElement("div");
+    div.setAttribute("style", "margin-top:1em;");
 
     /* Output mode */
     var span = document.createElement("span");
